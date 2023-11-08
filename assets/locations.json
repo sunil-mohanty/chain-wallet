@@ -1,0 +1,35 @@
+{
+  "offices": [
+    {
+      "address": "Next to RMZ Infinity[+91-1234567890]\nrice:22/kg \nmustard:10/kg \nsalt:5/kg",
+      "id": "sunil",
+      "image": "https://lh3.googleusercontent.com/YDyQevoY-D0eZQ9sYHp8dQjpFF5JpLfLK-0OM-uJK1oNK3_LRnGJAM0uXi9qb9UigKnVIIXlIgidxhRlnaB_FPtUOqPzrsCSiFZyoQ",
+      "lat": 12.99332,
+      "lng": 77.660176,
+      "name": "sunil's hypermarket",
+      "phone": "+91-11-11111111",
+      "region": "asia-pacific"
+    },
+    {
+      "address": "Opposite to bellandur central[+91-0987654321] \nrice:20/kg \nmustard:11/kg \nsalt:5/kg",
+      "id": "umakanth-hypermarket",
+      "image": "https://lh3.googleusercontent.com/YDyQevoY-D0eZQ9sYHp8dQjpFF5JpLfLK-0OM-uJK1oNK3_LRnGJAM0uXi9qb9UigKnVIIXlIgidxhRlnaB_FPtUOqPzrsCSiFZyoQ",
+      "lat": 12.9304,
+      "lng": 77.6784,
+      "name": "umakanth's hypermart",
+      "phone": "+91-00-00000000",
+      "region": "asia-pacific"
+    }
+  ],
+  "regions": [
+    {
+      "coords": {
+        "lat": 0.0524811,
+        "lng": 127.6560787
+      },
+      "id": "asia-pacific",
+      "name": "Asia Pacific",
+      "zoom": 3.0
+    }
+  ]
+}
