@@ -41,9 +41,9 @@ dependencies:
   http: ^0.13.4
   json_serializable: ^6.2.0
   english_words: ^4.0.0
-
+  getwidget: ^2.0.4
 dev_dependencies:
-  flutter_test:
+  flutter_test: 
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
