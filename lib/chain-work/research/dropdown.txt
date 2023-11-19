@@ -1,0 +1,48 @@
+ /*
+                    child: DropdownButton<Block>(
+                      value: selectedObject,
+                      onChanged: (Block? newValue) {
+                        setState(() {
+                          selectedObject = newValue;
+                        });
+                      },
+                      items:
+                          _blocks.map<DropdownMenuItem<Block>>((Block value) {
+                        return DropdownMenuItem<Block>(
+                          value: value,
+                          child: Container(
+                            child: Text(
+                                ' wallet hash :' + value.hash.substring(0, 7)),
+                          ),
+                        );
+                      }).toList(),
+                      icon: Icon(Icons.arrow_drop_down,
+                          color: Colors.blue), // Set custom dropdown icon
+                      iconSize: 24.0, // Set icon size
+                      isExpanded: true,
+                      isDense: true,
+                      // Allow the dropdown to expand to the width of its parent
+
+                      elevation: 16,
+                      underline: Container(
+                        height: 0,
+                      ),
+                      selectedItemBuilder: (BuildContext context) {
+                        return _blocks.map<Widget>((Block item) {
+                          return Container(
+                            width: 350.0,
+                            alignment: Alignment.centerLeft,
+                            child: Text(' wallet - ' + item.hash),
+                          );
+                        }).toList();
+                      },
+                      itemHeight: 48.0, // Set the height of each item
+                      menuMaxHeight: 200.0,
+                    ),*/
+
+
+
+
+
+                    =====================
+                    

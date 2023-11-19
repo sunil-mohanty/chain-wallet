@@ -7,6 +7,7 @@ import 'GameInputForm.dart';
 import 'SocialMediaIcons.dart';
 import 'form.dart';
 import 'map.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyApp1 extends StatefulWidget {
   @override
@@ -106,7 +107,9 @@ class _MyApp1State extends State<MyApp1> {
               Padding(
                 padding: EdgeInsets.only(top: 30.0),
                 child: Container(
-                    height: 280, child: Image.asset("assets/super-girl-1.png")),
+                    //height: 280, child: Image.asset("assets/super-girl-1.png")),
+                    height: 280,
+                    child: Image.asset("assets/electron.png")),
               ),
               Expanded(
                 child: Container(),
@@ -228,37 +231,63 @@ class _MyApp1State extends State<MyApp1> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      /*
+                      Icon(
+                        FontAwesomeIcons.instagram,
+                        size: 40,
+                        color: Color.fromARGB(255, 197, 86, 152),
+                      ),
+                      
+                      FloatingActionButton(
+                        onPressed: () {
+                          setState(() {
+                            //Also add logic to play
+                          });
+                        },
+                        child: Icon(
+                          FontAwesomeIcons.facebook,
+                          size: 40,
+                          color: Color.fromARGB(255, 7, 66, 202),
+                        ),
+                      ),
+                      Icon(
+                        FontAwesomeIcons.facebook,
+                        size: 40,
+                        color: Color.fromARGB(255, 7, 66, 202),
+                      ),
+                      Icon(FontAwesomeIcons.whatsapp,
+                          size: 40, color: Color.fromARGB(255, 18, 232, 121)),
+                      */
                       SocialIcon(
                         colors: [
                           Color(0xFF102397),
                           Color(0xFF187adf),
-                          Color(0xFF00eaf8),
                         ],
-                        iconData: CustomIcons.facebook,
+                        iconData: FontAwesomeIcons.facebook,
                         onPressed: () {},
                       ),
                       SocialIcon(
                         colors: [
-                          Color(0xFFff4f38),
-                          Color(0xFFff355d),
+                          Color.fromARGB(255, 128, 58, 175),
+                          Color.fromARGB(255, 223, 225, 158),
                         ],
-                        iconData: CustomIcons.googlePlus,
+                        iconData: FontAwesomeIcons.instagram,
                         onPressed: () {},
                       ),
                       SocialIcon(
                         colors: [
-                          Color(0xFF17ead9),
-                          Color(0xFF6078ea),
+                          Color.fromARGB(255, 19, 140, 226),
+                          Color.fromARGB(255, 19, 140, 226),
                         ],
-                        iconData: CustomIcons.twitter,
+                        iconData: FontAwesomeIcons.twitter,
                         onPressed: () {},
                       ),
                       SocialIcon(
                         colors: [
-                          Color(0xFF00c6fb),
-                          Color(0xFF005bea),
+                          Color.fromARGB(255, 62, 145, 219),
+                          Color.fromARGB(255, 62, 145, 219),
                         ],
-                        iconData: CustomIcons.linkedin,
+                        iconData: FontAwesomeIcons.linkedin,
                         onPressed: () {},
                       )
                     ],

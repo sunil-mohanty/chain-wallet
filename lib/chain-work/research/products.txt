@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'block.dart';
 import 'api_service.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:google_map_flutter_works/components/CircularButton.dart';
-import 'package:google_map_flutter_works/signin.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -34,7 +32,7 @@ class _HomeState extends State<Home> {
   }
 
   void _getWallet() async {
-    _blocks = (await ApiService().listWallet())!;
+    _blocks = (await ApiService().wallet())!;
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {
           // Map the API response to your MyObject class
 
@@ -59,10 +57,8 @@ class _HomeState extends State<Home> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF17ead9),
-              Color(0xFF6078ea)
-              // Color.fromARGB(255, 54, 117, 179),
-              // Color.fromARGB(255, 2, 15, 28)
+              Color.fromARGB(255, 54, 117, 179),
+              Color.fromARGB(255, 2, 15, 28)
             ], // Adjust colors as needed
           ),
         ),
@@ -127,27 +123,97 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            SizedBox(height: 100.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircularIconButton(
-                    icon: Icons.send,
-                    label: 'Send',
-                    onPressed: () => print('Send pressed')),
-                CircularIconButton(
-                    icon: Icons.arrow_downward,
-                    label: 'Reveive',
-                    onPressed: () => print('Receive pressed')),
-                CircularIconButton(
-                    icon: Icons.shopping_cart,
-                    label: 'Buy',
-                    onPressed: () => print('Buy pressed')),
-              ],
-            ),
           ],
         ),
       ),
+
+      /*
+        child: Stack(
+          children: [
+            Positioned(
+              top: 16.0,
+              left: 16.0,
+              child: IconButton(
+                icon: Icon(Icons.menu, color: Colors.pink[100]),
+                onPressed: () {
+                  // Open the drawer using the GlobalKey
+                  scaffoldKey.currentState?.openDrawer();
+                },
+              ),
+            ),
+            Positioned(
+              top: 120.0,
+              left: 25.0,
+              child: Container(
+                width: 315.0, // Set width
+                height: 60.0, // Set height
+                decoration: BoxDecoration(
+                  color: Colors.pink[100],
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  width: double.infinity,
+                  child: DropdownButtonHideUnderline(
+                    child: GFDropdown(
+                      padding: const EdgeInsets.all(15),
+                      borderRadius: BorderRadius.circular(8),
+                      border: const BorderSide(color: Colors.black12, width: 1),
+                      dropdownButtonColor: Color.fromARGB(255, 236, 240, 242),
+                      value: selectedObject,
+                      onChanged: (newValue) {
+                        setState(() {
+                          selectedObject = newValue as Block;
+                        });
+                      },
+                      items: _blocks
+                          .asMap()
+                          .entries
+                          .map<DropdownMenuItem<Block>>((entry) {
+                        // Using asMap to get index for assigning colors
+                        int index = entry.key;
+                        Block value = entry.value;
+                        Color itemColor = index % 2 == 0
+                            ? Colors.grey[200]!
+                            : Colors.white; // Example: Alternate colors
+
+                        return DropdownMenuItem<Block>(
+                          value: value,
+                          child: CustomDropdownItem(value, itemColor),
+                        );
+                      }).toList(),
+                      icon: Icon(Icons.arrow_drop_down,
+                          color: Colors.blue), // Set custom dropdown icon
+                      iconSize: 24.0, // Set icon size
+                      isExpanded: true,
+                      isDense: true,
+                      // Allow the dropdown to expand to the width of its parent
+
+                      elevation: 16,
+                      /*
+                      underline: Container(
+                        height: 0,
+                      ),*/
+                      selectedItemBuilder: (BuildContext context) {
+                        return _blocks.map<Widget>((Block item) {
+                          return Container(
+                            width: 310.0,
+                            alignment: Alignment.centerLeft,
+                            child: Text(' wallet - ' + item.hash),
+                          );
+                        }).toList();
+                      },
+                      itemHeight: 60.0, // Set the height of each item
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),*/
       drawer: Drawer(
         // Drawer content goes here
         child: Container(
@@ -158,6 +224,31 @@ class _HomeState extends State<Home> {
     );
   }
 }
+/*
+class CustomDropdownItem extends StatelessWidget {
+  final Block block;
+  final Color color;
+
+  CustomDropdownItem(this.block, this.color);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Divider(
+            color: Colors
+                .black), // Add a Divider before each item (customize color as needed)
+        Container(
+          width: 250.0, // Set the width of each item in the dropdown menu
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          color: color, // Set the background color for the item
+          child: Text(' wallet - ' + block.hash.substring(0, 6)),
+        ),
+      ],
+    );
+  }
+}
+*/
 
 class CustomDropdownItem extends StatelessWidget {
   final Block block;
@@ -174,7 +265,7 @@ class CustomDropdownItem extends StatelessWidget {
     );
   }
 }
-/*
+
 class DrawerContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -195,74 +286,6 @@ class DrawerContent extends StatelessWidget {
           onTap: () {
             // Handle drawer item tap
             Navigator.pop(context); // Close the drawer
-          },
-        ),
-      ],
-    );
-  }
-}*/
-
-class DrawerContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Home'),
-          onTap: () {
-            // Handle drawer item tap
-            Navigator.pop(context); // Close the drawer
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('Settings'),
-          onTap: () {
-            // Handle drawer item tap
-            Navigator.pop(context); // Close the drawer
-          },
-        ),
-        Divider(), // Add a divider for separation
-        ListTile(
-          leading: Icon(Icons.exit_to_app),
-          title: Text('Logout'),
-          onTap: () {
-            // Implement logout functionality
-            // For example, you can show a confirmation dialog and log the user out
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Logout'),
-                  content: Text('Are you sure you want to logout?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context); // Close the dialog
-                      },
-                      child: Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // Add your logout logic here
-                        // For example, navigate to the login screen
-                        /*
-                        Navigator.pop(context); // Close the dialog
-                        Navigator.pushReplacementNamed(context, '/login');
-                        */
-
-                        Navigator.push(
-                            //context, MaterialPageRoute(builder: (context) => const MapApp())
-                            context,
-                            MaterialPageRoute(builder: (context) => MyApp1()));
-                      },
-                      child: Text('Logout'),
-                    ),
-                  ],
-                );
-              },
-            );
           },
         ),
       ],

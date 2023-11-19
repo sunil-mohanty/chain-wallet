@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
+  #sdk: ">=3.0.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -42,6 +43,8 @@ dependencies:
   json_serializable: ^6.2.0
   english_words: ^4.0.0
   getwidget: ^2.0.4
+  font_awesome_flutter: ">= 4.7.0"
+  #flutter_svg: ^2.0.9
 dev_dependencies:
   flutter_test: 
     sdk: flutter
@@ -67,10 +70,11 @@ flutter:
   assets:
     - assets/locations.json
     - assets/test.jpeg
-    - assets/power.png
+    - assets/power-1.png
     - assets/dubai-vector.png
     - assets/super-girl-1.png
     - assets/dubai-skyline.png
+    - assets/electron.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
