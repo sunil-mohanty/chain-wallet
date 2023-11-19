@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-List<Wallet> WalletFromJson(String str) =>
+List<Wallet> walletFromJson(String str) =>
     List<Wallet>.from(json.decode(str).map((x) => Wallet.fromJson(x)));
 
-String WalletToJson(List<Wallet> payload) =>
+String walletToJson(List<Wallet> payload) =>
     json.encode(List<dynamic>.from(payload.map((x) => x.toJson())));
 
 class Wallet {

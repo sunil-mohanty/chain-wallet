@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
 import 'block.dart';
+import 'wallet.dart';
 import 'api_service.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_map_flutter_works/components/CircularButton.dart';
 import 'package:google_map_flutter_works/signin.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final String? email;
+  final String? password;
+
+  Home(this.email, this.password, {Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(this.email);
 }
 
 class _HomeState extends State<Home> {
+  final String? email;
+
+  _HomeState(this.email, {Key? key}) : super();
+
+  late List<Wallet> _wallets = [];
   late List<Block> _blocks = [];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  Block? selectedObject = null;
+  Block? selectedBlock = null;
+  Wallet? selectedWallet = null;
 
   @override
   void initState() {
     super.initState();
-    _getData();
+    //_getData();
+    _getWallet();
   }
 
   void _getData() async {
@@ -29,17 +40,17 @@ class _HomeState extends State<Home> {
           // Map the API response to your MyObject class
 
           // Preselect the first element
-          selectedObject = _blocks.isNotEmpty ? _blocks.first : null;
+          selectedBlock = _blocks.isNotEmpty ? _blocks.first : null;
         }));
   }
 
   void _getWallet() async {
-    _blocks = (await ApiService().listWallet())!;
+    _wallets = (await ApiService().listWallets(email))!;
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {
           // Map the API response to your MyObject class
 
           // Preselect the first element
-          selectedObject = _blocks.isNotEmpty ? _blocks.first : null;
+          selectedWallet = _wallets.isNotEmpty ? _wallets.first : null;
         }));
   }
 
@@ -94,14 +105,14 @@ class _HomeState extends State<Home> {
                     width: double.infinity,
                     child: DropdownButtonHideUnderline(
                       child: GFDropdown(
-                        value: selectedObject,
+                        value: selectedWallet,
                         onChanged: (newValue) {
                           setState(() {
-                            selectedObject = newValue as Block;
+                            selectedWallet = newValue as Wallet;
                           });
                         },
-                        items: _blocks.map<DropdownMenuItem<Block>>((value) {
-                          return DropdownMenuItem<Block>(
+                        items: _wallets.map<DropdownMenuItem<Wallet>>((value) {
+                          return DropdownMenuItem<Wallet>(
                             value: value,
                             child: CustomDropdownItem(value),
                           );
@@ -112,11 +123,12 @@ class _HomeState extends State<Home> {
                         isDense: true,
                         elevation: 16,
                         selectedItemBuilder: (BuildContext context) {
-                          return _blocks.map<Widget>((Block item) {
+                          return _wallets.map<Widget>((Wallet item) {
                             return Container(
                               width: 310.0,
                               alignment: Alignment.centerLeft,
-                              child: Text(' wallet - ' + item.hash),
+                              child: Text(
+                                  'wallet - ' + item.walletId.substring(0, 6)),
                             );
                           }).toList();
                         },
@@ -127,7 +139,17 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            SizedBox(height: 100.0),
+            SizedBox(height: 50.0),
+            Center(
+              child: Text(
+                'AED ${selectedWallet?.balance ?? 'N/A'}',
+                style: TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(96, 133, 16, 16)),
+              ),
+            ),
+            SizedBox(height: 50.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -160,9 +182,9 @@ class _HomeState extends State<Home> {
 }
 
 class CustomDropdownItem extends StatelessWidget {
-  final Block block;
+  final Wallet wallet;
 
-  CustomDropdownItem(this.block);
+  CustomDropdownItem(this.wallet);
 
   @override
   Widget build(BuildContext context) {
@@ -170,37 +192,10 @@ class CustomDropdownItem extends StatelessWidget {
       width: 250.0,
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       color: Colors.grey[200],
-      child: Text(' wallet - ' + block.hash.substring(0, 6)),
+      child: Text(' wallet - ' + wallet.walletId.substring(0, 6)),
     );
   }
 }
-/*
-class DrawerContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        // Drawer content goes here
-        ListTile(
-          leading: Icon(Icons.home),
-          title: Text('Home'),
-          onTap: () {
-            // Handle drawer item tap
-            Navigator.pop(context); // Close the drawer
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('Settings'),
-          onTap: () {
-            // Handle drawer item tap
-            Navigator.pop(context); // Close the drawer
-          },
-        ),
-      ],
-    );
-  }
-}*/
 
 class DrawerContent extends StatelessWidget {
   @override

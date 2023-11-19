@@ -5,5 +5,6 @@ class ApiConstants {
   static String blocks = '/api/blocks/list';
   static String login = '/api/login';
   static String wallet = '/api/login';
+  static String WALLETS = '/api/wallets';
   static String WALLET_DETAILS = '/api/wallet-details';
 }

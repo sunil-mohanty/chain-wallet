@@ -15,8 +15,8 @@ class MyApp1 extends StatefulWidget {
 }
 
 class _MyApp1State extends State<MyApp1> {
-  String? _email;
-  String? _password;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   //google sign
   /// GoogleSignIn googleauth = new GoogleSignIn();
   final formkey = new GlobalKey<FormState>();
@@ -42,7 +42,9 @@ class _MyApp1State extends State<MyApp1> {
     Navigator.push(
         //context, MaterialPageRoute(builder: (context) => const MapApp())
         context,
-        MaterialPageRoute(builder: (context) => const Home()));
+        MaterialPageRoute(
+            builder: (context) =>
+                Home(emailController.text, passwordController.text)));
     /*Navigator.push(context, MaterialPageRoute(builder: (context) {
       return MaterialApp(
         title: 'Flutter',
@@ -102,14 +104,22 @@ class _MyApp1State extends State<MyApp1> {
         fit: StackFit.expand,
         children: <Widget>[
           Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 30.0),
+                padding: EdgeInsets.only(top: 10.0),
                 child: Container(
-                    //height: 280, child: Image.asset("assets/super-girl-1.png")),
-                    height: 280,
-                    child: Image.asset("assets/electron.png")),
+                  //height: 280, child: Image.asset("assets/super-girl-1.png")),
+                  height: 250,
+                  width: 95,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage("assets/stellar.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
               Expanded(
                 child: Container(),
@@ -130,15 +140,15 @@ class _MyApp1State extends State<MyApp1> {
               child: Column(
                 children: <Widget>[
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text("Your saviour",
+                      Text("Stellar: ",
                           style: TextStyle(
                               fontFamily: "Poppins-Bold",
                               fontSize: ScreenUtil.getInstance().setSp(28),
                               letterSpacing: .6,
                               fontWeight: FontWeight.bold)),
-                      Text("Saanvika is here",
+                      Text("Navigate to the future of finance",
                           style: TextStyle(
                               fontFamily: "Poppins-Bold",
                               fontSize: ScreenUtil.getInstance().setSp(28),
@@ -153,8 +163,8 @@ class _MyApp1State extends State<MyApp1> {
                       key: formkey,
                       child: FormCard(
                         validation: 'required',
-                        saveemail: (value) => _email = value,
-                        savepwd: (value) => _password = value,
+                        emailController: emailController,
+                        passwordController: passwordController,
                       )),
                   SizedBox(height: ScreenUtil.getInstance().setHeight(20)),
                   Row(
@@ -184,13 +194,14 @@ class _MyApp1State extends State<MyApp1> {
                           height: ScreenUtil.getInstance().setHeight(100),
                           decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [
-                                Color(0xFF17ead9),
-                                Color(0xFF6078ea)
+                                Color.fromARGB(255, 13, 19, 144),
+                                Color.fromARGB(255, 68, 71, 30)
                               ]),
                               borderRadius: BorderRadius.circular(6.0),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Color(0xFF6078ea).withOpacity(.3),
+                                    color: Color.fromARGB(255, 71, 92, 199)
+                                        .withOpacity(.3),
                                     offset: Offset(0.0, 8.0),
                                     blurRadius: 8.0)
                               ]),
@@ -300,7 +311,10 @@ class _MyApp1State extends State<MyApp1> {
                     children: <Widget>[
                       Text(
                         "New User? ",
-                        style: TextStyle(fontFamily: "Poppins-Medium"),
+                        style: TextStyle(
+                          fontFamily: "Poppins-Medium",
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       InkWell(
                         onTap: () {
@@ -308,8 +322,10 @@ class _MyApp1State extends State<MyApp1> {
                         },
                         child: Text("SignUp",
                             style: TextStyle(
-                                color: Color(0xFF5d74e3),
-                                fontFamily: "Poppins-Bold")),
+                                fontFamily: "Poppins-Medium",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Color.fromARGB(255, 3, 1, 35))),
                       )
                     ],
                   )

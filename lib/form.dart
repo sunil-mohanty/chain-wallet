@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-class FormCard extends StatelessWidget {
-  String validation;
-  final saveemail;
-  final savepwd;
-  FormCard({this.saveemail,this.savepwd, required this.validation});
 
+class FormCard extends StatelessWidget {
+  final validation;
+  final emailController;
+  final passwordController;
+  FormCard(
+      {required this.emailController,
+      required this.passwordController,
+      required this.validation});
 
   //save;
   @override
   Widget build(BuildContext context) {
     return new Container(
       width: double.infinity,
-      height: ScreenUtil.getInstance().setHeight(525),
+      height: ScreenUtil.getInstance().setHeight(495),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8.0),
@@ -42,36 +45,36 @@ class FormCard extends StatelessWidget {
             Text("Email",
                 style: TextStyle(
                     fontFamily: "Poppins-Medium",
-                    fontSize: ScreenUtil.getInstance().setSp(26))),
+                    fontSize: ScreenUtil.getInstance().setSp(21))),
             TextFormField(
-                decoration: InputDecoration(
-                    hintText: "Email",
-                    hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-                obscureText: false,
-                validator: (value)=>
-                value!.isEmpty ? validation: null,
-                onSaved:saveemail
+              controller: emailController,
+              decoration: InputDecoration(
+                  hintText: "Email",
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+              obscureText: false,
+              validator: (value) => value!.isEmpty ? validation : null,
+              //onSaved: emailController
             ),
             SizedBox(
-              height: ScreenUtil.getInstance().setHeight(30),
+              height: ScreenUtil.getInstance().setHeight(20),
             ),
-            Text("Password",
+            Text(
+              "Password",
               style: TextStyle(
                   fontFamily: "Poppins-Medium",
-                  fontSize: ScreenUtil.getInstance().setSp(26)),),
+                  fontSize: ScreenUtil.getInstance().setSp(21)),
+            ),
             TextFormField(
-
-                decoration: InputDecoration(
-                    hintText: "Password",
-                    hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
-                obscureText: true,
-                validator: (value)=>
-                value!.isEmpty ? validation: null,
-                onSaved: savepwd
-
+              controller: passwordController,
+              decoration: InputDecoration(
+                  hintText: "Password",
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 12.0)),
+              obscureText: true,
+              validator: (value) => value!.isEmpty ? validation : null,
+              //onSaved: passwordController
             ),
             SizedBox(
-              height: ScreenUtil.getInstance().setHeight(35),
+              height: ScreenUtil.getInstance().setHeight(25),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
