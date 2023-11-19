@@ -107,7 +107,7 @@ class _MyApp1State extends State<MyApp1> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 21.0),
                 child: Container(
                   //height: 280, child: Image.asset("assets/super-girl-1.png")),
                   height: 250,
@@ -142,12 +142,17 @@ class _MyApp1State extends State<MyApp1> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text("Stellar: ",
+                      Text("STELLAR",
                           style: TextStyle(
-                              fontFamily: "Poppins-Bold",
-                              fontSize: ScreenUtil.getInstance().setSp(28),
-                              letterSpacing: .6,
-                              fontWeight: FontWeight.bold)),
+                            fontFamily: "Poppins-Bold",
+                            fontSize: ScreenUtil.getInstance().setSp(30),
+                            letterSpacing: .6,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          )),
+                      SizedBox(
+                        height: ScreenUtil.getInstance().setHeight(10),
+                      ),
                       Text("Navigate to the future of finance",
                           style: TextStyle(
                               fontFamily: "Poppins-Bold",

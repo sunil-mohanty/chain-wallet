@@ -70,8 +70,10 @@ class _HomeState extends State<Home> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF17ead9),
-              Color(0xFF6078ea)
+              Color.fromARGB(255, 13, 19, 133),
+              Color.fromARGB(255, 87, 91, 35),
+              //Color(0xFF17ead9),
+              //Color(0xFF6078ea)
               // Color.fromARGB(255, 54, 117, 179),
               // Color.fromARGB(255, 2, 15, 28)
             ], // Adjust colors as needed
@@ -146,7 +148,7 @@ class _HomeState extends State<Home> {
                 style: TextStyle(
                     fontSize: 40.0,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(96, 133, 16, 16)),
+                    color: Color.fromARGB(179, 249, 246, 246)),
               ),
             ),
             SizedBox(height: 50.0),
