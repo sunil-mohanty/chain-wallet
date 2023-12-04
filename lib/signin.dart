@@ -107,7 +107,7 @@ class _MyApp1State extends State<MyApp1> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 21.0),
+                padding: EdgeInsets.only(top: 81.0),
                 child: Container(
                   //height: 280, child: Image.asset("assets/super-girl-1.png")),
                   height: 250,
@@ -136,7 +136,7 @@ class _MyApp1State extends State<MyApp1> {
           ),
           SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 40.0),
+              padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 80.0),
               child: Column(
                 children: <Widget>[
                   Column(

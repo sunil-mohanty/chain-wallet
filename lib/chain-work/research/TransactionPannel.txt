@@ -1,0 +1,347 @@
+import 'package:flutter/material.dart';
+import 'package:google_map_flutter_works/chain-work/block.dart';
+
+class TransactionPanel extends StatelessWidget {
+  final List<Block> transactions;
+
+  TransactionPanel(this.transactions);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Transactions',
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Divider(color: Color.fromARGB(255, 21, 16, 116)),
+          SizedBox(height: 10.0),
+          Container(
+            height: 275.0, // Adjust the height as needed
+
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (scrollNotification) {
+                // Add your logic to determine if the scroll button should be visible
+                bool shouldShowScrollButton =
+                    scrollNotification.metrics.maxScrollExtent > 0;
+
+                // Return true to continue receiving notifications
+                return true;
+              },
+              child: Scrollbar(
+                child: ListView.separated(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return TransactionItem(transactions[index]);
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(color: Color.fromARGB(255, 40, 22, 109));
+                  },
+                  itemCount: transactions.length,
+                ),
+              ),
+            ),
+          ),
+          Visibility(
+            visible:
+                true, // Set this to the condition for when to show the scroll button
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: ScrollDownButton(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TransactionItem extends StatelessWidget {
+  final Block transaction;
+
+  TransactionItem(this.transaction);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          transaction.timestamp,
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8.0),
+        Text(
+          transaction.data,
+          style: TextStyle(fontSize: 16.0),
+        ),
+        SizedBox(height: 16.0),
+      ],
+    );
+  }
+}
+
+class ScrollDownButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        // Add logic to scroll down
+      },
+      child: Icon(Icons.arrow_downward),
+    );
+  }
+}
+
+
+
+import 'package:flutter/material.dart';
+import 'package:google_map_flutter_works/chain-work/block.dart';
+
+class TransactionPanel extends StatelessWidget {
+  final List<Block> transactions;
+
+  TransactionPanel(this.transactions);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Transactions',
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Divider(color: Colors.grey),
+          SizedBox(height: 10.0),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return TransactionItem(transactions[index]);
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider(color: Colors.grey);
+                    },
+                    itemCount: transactions.length,
+                  ),
+                  SizedBox(height: 16.0),
+                ],
+              ),
+            ),
+          ),
+          Visibility(
+            visible: transactions.length > 5, // Adjust the threshold as needed
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: ScrollDownButton(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ScrollDownButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Scrollable.ensureVisible(
+          context,
+          duration: Duration(milliseconds: 500),
+          alignment: 0.5,
+        );
+      },
+      child: Icon(Icons.arrow_downward),
+    );
+  }
+}
+
+class TransactionItem extends StatelessWidget {
+  final Block transaction;
+
+  TransactionItem(this.transaction);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Transactions',
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(color: Color.fromARGB(255, 21, 16, 116)),
+          Container(
+            height: 275.0, // Adjust the height as needed
+
+            child: ListView.separated(
+              controller: _scrollController,
+              physics: AlwaysScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                if (index < _visibleItemCount) {
+                  // Display only the visible items
+                  return TransactionItem(widget.transactions[index]);
+                } else {
+                  // Return an empty container for the items beyond the visible count
+                  return Container();
+                }
+              },
+              separatorBuilder: (context, index) {
+                return Divider(color: Color.fromARGB(255, 40, 22, 109));
+              },
+              itemCount: widget.transactions.length,
+            ),
+          ),
+          Visibility(
+            visible: _showScrollIcon,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: ScrollIcon(scrollController: _scrollController),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+==========================================
+class TransactionPanel extends StatefulWidget {
+  final List<Block> transactions;
+
+  TransactionPanel(this.transactions);
+
+  @override
+  _TransactionPanelState createState() => _TransactionPanelState();
+}
+
+class _TransactionPanelState extends State<TransactionPanel> {
+  late ScrollController _scrollController;
+  bool _showScrollIcon = false;
+  int _visibleItemCount = 5;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+    _showScrollIcon = true;
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      setState(() {
+        _visibleItemCount += 5;
+        if (_visibleItemCount >= widget.transactions.length) {
+          _visibleItemCount = widget.transactions.length;
+          _showScrollIcon = false;
+        }
+      });
+    } else {
+      setState(() {
+        _showScrollIcon = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Transactions',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Divider(color: Color.fromARGB(255, 21, 16, 116)),
+            Expanded(
+              child: ListView.separated(
+                controller: _scrollController,
+                physics: AlwaysScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  if (index < _visibleItemCount) {
+                    return TransactionItem(widget.transactions[index]);
+                  } else {
+                    return Container();
+                  }
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(color: Color.fromARGB(255, 40, 22, 109));
+                },
+                itemCount: widget.transactions.length,
+              ),
+            ),
+            Visibility(
+              visible: _showScrollIcon,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ScrollIcon(scrollController: _scrollController),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

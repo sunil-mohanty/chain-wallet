@@ -5,6 +5,7 @@ import 'constants.dart';
 import 'block.dart';
 import 'wallet.dart';
 import 'dart:convert';
+import 'package:google_map_flutter_works/chain-work/coin.dart';
 
 class ApiService {
   Future<List<Block>?> getBlocks() async {
@@ -91,5 +92,29 @@ class ApiService {
       print(e.toString());
       print(stacktrace);
     }
+  }
+
+  Future<List<Coin>> getCoinRates() async {
+    List<Coin> coins = [];
+    var url = Uri.parse(
+        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false');
+
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      print(response.body);
+      coins = coinFromJson(response.body);
+      return coins;
+    }
+
+    // http.get(Uri.parse(url)).then((data) {
+    //   return json.decode(data.body);
+    // }).then((data) {
+    //   for (var json in data) {
+    //     coins.add(Coin.fromJson(json));
+    //   }
+    // }).catchError((e) {
+    //   print(e);
+    // });
+    return coins;
   }
 }

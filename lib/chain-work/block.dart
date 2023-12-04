@@ -7,14 +7,15 @@ String blockToJson(List<Block> payload) =>
     json.encode(List<dynamic>.from(payload.map((x) => x.toJson())));
 
 class Block {
-  Block({
-    required this.timestamp,
-    required this.lastHash,
-    required this.hash,
-    required this.data,
-    required this.noance,
-    required this.difficulty,
-  });
+  Block(
+      {required this.timestamp,
+      required this.lastHash,
+      required this.hash,
+      required this.data,
+      required this.noance,
+      required this.difficulty,
+      required this.isSend,
+      required this.amount});
 
   String timestamp;
   String lastHash;
@@ -22,6 +23,8 @@ class Block {
   String data;
   int noance;
   int difficulty;
+  bool isSend;
+  double amount;
 
   factory Block.fromJson(Map<String, dynamic> json) => Block(
         timestamp: json["timestamp"],
@@ -30,6 +33,8 @@ class Block {
         data: json["data"],
         noance: json["noance"],
         difficulty: json["difficulty"],
+        isSend: json["isSend"],
+        amount: json["amount"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,5 +44,7 @@ class Block {
         "data": data,
         "noance": noance,
         "difficulty": difficulty,
+        "isSend": isSend,
+        "amount": amount,
       };
 }

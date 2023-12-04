@@ -1,0 +1,241 @@
+class _TransactionPanelState extends State<TransactionPanel> {
+  late ScrollController _scrollController;
+  bool _showScrollIcon = false;
+  int _visibleItemCount = 5;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+    _showScrollIcon = true; // Set initial value to true
+  }
+
+/*
+  void _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      // At the bottom of the list
+      setState(() {
+        _showScrollIcon = false;
+      });
+    } else {
+      setState(() {
+        _showScrollIcon = true;
+      });
+    }
+  }
+*/
+
+  void _scrollListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      // At the bottom of the list, load more items
+      setState(() {
+        _visibleItemCount += 5; // Increase the visible item count by 5
+        if (_visibleItemCount >= widget.transactions.length) {
+          _showScrollIcon = false; // Hide scroll icon if all items are visible
+        }
+      });
+    } else {
+      setState(() {
+        _showScrollIcon = true;
+      });
+    }
+  }
+/*
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Transactions',
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          //SizedBox(height: 10.0),
+          Divider(color: Color.fromARGB(255, 21, 16, 116)),
+          Container(
+            height: 275.0, // Adjust the height as needed
+
+            child: ListView.separated(
+              controller: _scrollController,
+              physics: AlwaysScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return TransactionItem(widget.transactions[index]);
+              },
+              separatorBuilder: (context, index) {
+                return Divider(color: Color.fromARGB(255, 40, 22, 109));
+              },
+              itemCount: widget.transactions.length,
+            ),
+          ),
+          Visibility(
+            visible: _showScrollIcon,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: ScrollIcon(scrollController: _scrollController),
+            ),
+          ),
+        ],
+      ),
+    );
+  }*/
+/*
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Transactions',
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(color: Color.fromARGB(255, 21, 16, 116)),
+          Container(
+            height: 275.0, // Adjust the height as needed
+
+            child: ListView.separated(
+              controller: _scrollController,
+              physics: AlwaysScrollableScrollPhysics(),
+              shrinkWrap: false,
+              itemBuilder: (context, index) {
+                if (index < _visibleItemCount) {
+                  // Display only the visible items
+                  return TransactionItem(widget.transactions[index]);
+                } else {
+                  // Return an empty container for the items beyond the visible count
+                  return Container();
+                }
+              },
+              separatorBuilder: (context, index) {
+                return Divider(color: Color.fromARGB(255, 40, 22, 109));
+              },
+              itemCount: widget.transactions.length,
+            ),
+          ),
+          Visibility(
+            visible: _showScrollIcon,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: ScrollIcon(scrollController: _scrollController),
+            ),
+          ),
+        ],
+      ),
+    );
+  }*/
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Transactions',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Divider(color: Color.fromARGB(255, 21, 16, 116)),
+            Flexible(
+              child: ListView.separated(
+                controller: _scrollController,
+                physics: AlwaysScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  if (index < _visibleItemCount) {
+                    return TransactionItem(widget.transactions[index]);
+                  } else {
+                    return Container();
+                  }
+                },
+                separatorBuilder: (context, index) {
+                  return Divider(color: Color.fromARGB(255, 40, 22, 109));
+                },
+                itemCount: widget.transactions.length,
+              ),
+            ),
+            Visibility(
+              visible: _showScrollIcon,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: ScrollIcon(scrollController: _scrollController),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  double _calculatePanelHeight() {
+    // Calculate the minimum height of the panel
+    final minHeight = 60.0; // Set a minimum height
+    final totalHeight =
+        _visibleItemCount * (60.0 + 16.0); // Height of each item + separator
+    return totalHeight > minHeight ? totalHeight : minHeight;
+  }
+}
+
+
+class TransactionItem extends StatelessWidget {
+  final Block transaction;
+
+  TransactionItem(this.transaction);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          transaction.timestamp,
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8.0),
+        Text(
+          transaction.data,
+          style: TextStyle(fontSize: 16.0),
+        ),
+        SizedBox(height: 16.0),
+      ],
+    );
+  }
+}

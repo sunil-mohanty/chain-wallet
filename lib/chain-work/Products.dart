@@ -4,7 +4,9 @@ import 'wallet.dart';
 import 'api_service.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_map_flutter_works/components/CircularButton.dart';
+import 'package:google_map_flutter_works/components/Transaction.dart';
 import 'package:google_map_flutter_works/signin.dart';
+import 'package:google_map_flutter_works/market.dart';
 
 class Home extends StatefulWidget {
   final String? email;
@@ -27,11 +29,15 @@ class _HomeState extends State<Home> {
   Block? selectedBlock = null;
   Wallet? selectedWallet = null;
 
+  // Define the current index for the selected tab in the bottom navigation bar
+  int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
     //_getData();
     _getWallet();
+    _displayDummyData();
   }
 
   void _getData() async {
@@ -52,6 +58,91 @@ class _HomeState extends State<Home> {
           // Preselect the first element
           selectedWallet = _wallets.isNotEmpty ? _wallets.first : null;
         }));
+  }
+
+  void _displayDummyData() {
+    // Dummy transaction data
+    List<Block> dummyTransactions = [
+      Block(
+          timestamp: '2023-11-7 10:00 AM',
+          lastHash: '0X1X2X3X',
+          hash: '00XZ1WRTS',
+          data: 'Sent AED 50 to John',
+          noance: 7,
+          difficulty: 6,
+          isSend: true,
+          amount: 50),
+
+      Block(
+          timestamp: '2023-11-10 10:00 AM',
+          lastHash: '0X2X2X3X',
+          hash: '00XZ2WRTS',
+          data: 'Received AED 100 from Alice',
+          noance: 7,
+          difficulty: 6,
+          isSend: false,
+          amount: 100),
+      Block(
+          timestamp: '2023-11-11 10:00 AM',
+          lastHash: '0X3X2X3X',
+          hash: '00XZ3WRTS',
+          data: 'Sent AED 30 to Bob',
+          noance: 7,
+          difficulty: 6,
+          isSend: true,
+          amount: 30),
+      Block(
+          timestamp: '2023-11-11 10:00 AM',
+          lastHash: '0X3X2X3X',
+          hash: '00XZ3WRTS',
+          data: 'Received AED 35 from Pechulu chuuaa',
+          noance: 7,
+          difficulty: 6,
+          isSend: false,
+          amount: 35),
+      Block(
+          timestamp: '2023-11-11 10:00 AM',
+          lastHash: '0X3X2X3X',
+          hash: '00XZ3WRTS',
+          data: 'Sent AED 40 to Mingulu',
+          noance: 7,
+          difficulty: 6,
+          isSend: true,
+          amount: 40),
+      Block(
+          timestamp: '2023-11-11 10:00 AM',
+          lastHash: '0X3X2X3X',
+          hash: '00XZ3WRTS',
+          data: 'Sent AED 40 to Bob',
+          noance: 7,
+          difficulty: 6,
+          isSend: true,
+          amount: 40),
+      Block(
+          timestamp: '2023-11-11 10:00 AM',
+          lastHash: '0X3X2X3X',
+          hash: '00XZ3WRTS',
+          data: 'Received AED 30 from Mike',
+          noance: 7,
+          difficulty: 6,
+          isSend: false,
+          amount: 30),
+      Block(
+          timestamp: '2023-11-11 10:00 AM',
+          lastHash: '0X3X2X3X',
+          hash: '00XZ3WRTS',
+          data: 'Sent AED 10 to Mamata Banarjee',
+          noance: 7,
+          difficulty: 6,
+          isSend: true,
+          amount: 10),
+      // Add more dummy transactions as needed
+    ];
+
+    setState(() {
+      _blocks = dummyTransactions;
+      selectedBlock = _blocks.first;
+    });
   }
 
   @override
@@ -82,8 +173,9 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 30.0), // Add space here
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(8.0),
               child: IconButton(
                 icon: Icon(Icons.menu, color: Colors.white),
                 onPressed: () {
@@ -91,10 +183,10 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            SizedBox(height: 20.0), // Adjust the space as needed
+            SizedBox(height: 10.0), // Adjust the space as needed
             Center(
               child: Container(
-                width: 315.0,
+                width: 385.0,
                 height: 50.0,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -128,9 +220,14 @@ class _HomeState extends State<Home> {
                           return _wallets.map<Widget>((Wallet item) {
                             return Container(
                               width: 310.0,
-                              alignment: Alignment.centerLeft,
+                              alignment: Alignment.center,
                               child: Text(
-                                  'wallet - ' + item.walletId.substring(0, 6)),
+                                  'WALLET - ' +
+                                      item.walletId
+                                          .toUpperCase()
+                                          .substring(0, 10),
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center),
                             );
                           }).toList();
                         },
@@ -141,7 +238,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            SizedBox(height: 50.0),
+            SizedBox(height: 20.0),
             Center(
               child: Text(
                 'AED ${selectedWallet?.balance ?? 'N/A'}',
@@ -151,7 +248,7 @@ class _HomeState extends State<Home> {
                     color: Color.fromARGB(179, 249, 246, 246)),
               ),
             ),
-            SizedBox(height: 50.0),
+            SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -169,17 +266,86 @@ class _HomeState extends State<Home> {
                     onPressed: () => print('Buy pressed')),
               ],
             ),
+            SizedBox(height: 20.0), // Add space before the transaction list
+            Flexible(
+              child: TransactionPanel(_blocks),
+            ),
+            SizedBox(height: 20.0),
+            /*
+            Expanded(
+              child: ListView.builder(
+                itemCount: _blocks.length,
+                itemBuilder: (context, index) {
+                  return CardContentWidget(_blocks, index);
+                },
+              ),
+            ),*/
           ],
         ),
       ),
       drawer: Drawer(
         // Drawer content goes here
+
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
           child: DrawerContent(),
         ),
       ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          color: Color.fromARGB(
+              255, 255, 255, 255), // Set the background color of the bottom bar
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            // Handle tab selection
+            setState(() {
+              _currentIndex = index;
+            });
+
+            // Add logic for each tab's functionality
+            if (index == 0) {
+              // Handle the first tab
+              print('First tab pressed');
+            } else if (index == 1) {
+              // Handle the second tab
+              loadMarket();
+              print('loadMarket tab pressed');
+            } else if (index == 2) {
+              // Handle the third tab
+              print('Third tab pressed');
+            }
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.exit_to_app),
+              label: 'Logout',
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  loadMarket() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MarketScreen(),
+        ));
   }
 }
 
@@ -194,7 +360,45 @@ class CustomDropdownItem extends StatelessWidget {
       width: 250.0,
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       color: Colors.grey[200],
-      child: Text(' wallet - ' + wallet.walletId.substring(0, 6)),
+      child: Text(' WALLET -' + wallet.walletId.substring(0, 6)),
+    );
+  }
+}
+
+class CardContentWidget extends StatelessWidget {
+  List<Block> _blocks;
+  int index;
+
+  CardContentWidget(this._blocks, this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(18.0),
+      shape: RoundedRectangleBorder(
+        borderRadius:
+            BorderRadius.circular(20.0), // Adjust the radius as needed
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _blocks[index].timestamp,
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              _blocks[index].data,
+              style: TextStyle(color: Colors.white, fontSize: 10.0),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -266,7 +470,8 @@ class DrawerContent extends StatelessWidget {
     );
   }
 }
-
+  
+/*
 class CardContentWidget extends StatelessWidget {
   List<Block> _blocks;
   int index;
@@ -299,4 +504,4 @@ class CardContentWidget extends StatelessWidget {
       ),
     );
   }
-}
+}*/
