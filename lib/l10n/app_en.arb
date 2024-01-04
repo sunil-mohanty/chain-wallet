@@ -1,0 +1,22 @@
+{
+  "@@locale":"en",
+  "walletBalance":"Wallet Balance",
+  "bitcoin":"Bitcoin",
+  "itemCount":"Item Count: {count}",
+  "balance":"$23,000",
+  "currencies":"3 currencies",
+  "myBank":"My Bank",
+  "transafer":"Transfer",
+  "activity":"Activity",
+  "bitcoinBalance":"$7,302",
+  "bitcoinPortfolio":"32% of portfolio",
+  "firstBalnk":"",
+  "solana":"Solona",
+  "solanaBalance":"$7,302",
+  "solanaPortfolioPercentage":"40% of portfolio",
+  "secondBlank":"",
+  "dogeCoin":"Dogecoin",
+  "dogeCoinBalance":"$7,302",
+  "dogeCoinPortfolioPercentage":"40% of portfolio",
+  "thirdBlank":""
+}

@@ -42,6 +42,17 @@ class _SigninState extends State<Signin> {
         print(e);
       });
     }*/
+    /*
+    Navigator.push(
+        //context, MaterialPageRoute(builder: (context) => const MapApp())
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                HomePageWidget(emailController.text, passwordController.text)));*/
+
+    ///MaterialPageRoute(builder: (context) => HomePageWidget('', ''));
+    //  Navigator.pushNamed(context, '/home',
+    //    arguments: {'username': '', 'password': ''});
 
     Navigator.pushReplacement(
       context,

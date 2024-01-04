@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_map_flutter_works/chain-work/block.dart';
 
+import 'package:google_map_flutter_works/flow/flutter_flow_animations.dart';
+import 'package:google_map_flutter_works/flow/flutter_flow_theme.dart';
+import 'package:google_map_flutter_works/flow/flutter_flow_util.dart';
+import 'package:google_map_flutter_works/flow/flutter_flow_widgets.dart';
+
 class TransactionPanel extends StatefulWidget {
   final List<Block> transactions;
 
@@ -47,21 +52,24 @@ class _TransactionPanelState extends State<TransactionPanel> {
       margin: EdgeInsets.symmetric(horizontal: 16.0),
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.0),
-      ),
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color:
+                Colors.white.withOpacity(0.2), // Adjust the opacity as needed
+            width: 1.0, // Adjust the border width as needed
+          )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'Transactions',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-            ),
+          Text('Transactions',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).titleMedium
+              // .override(fontWeight: FontWeight.bold),
+              ),
+          Divider(
+            color: Colors.white.withOpacity(0.2),
           ),
-          Divider(color: Color.fromARGB(255, 21, 16, 116)),
           Expanded(
             child: ListView.separated(
               controller: _scrollController,
@@ -76,7 +84,9 @@ class _TransactionPanelState extends State<TransactionPanel> {
                 }
               },
               separatorBuilder: (context, index) {
-                return Divider(color: Color.fromARGB(255, 40, 22, 109));
+                return Divider(
+                  color: Colors.white.withOpacity(0.2),
+                );
               },
             ),
           ),
@@ -134,23 +144,23 @@ class TransactionItem extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width -
                       170.0, // Adjust the width as needed
-                  child: Text(
-                    transaction.timestamp,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: Text(transaction.timestamp,
+                      textAlign: TextAlign.left,
+                      style: FlutterFlowTheme.of(context).bodySmall
+                      // .override(
+                      //       fontSize: 16.0,
+                      //       fontWeight: FontWeight.bold,
+                      //    ),
+                      ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width -
                       170.0, // Adjust the width as needed
-                  child: Text(
-                    transaction.data,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 16.0),
-                  ),
+                  child: Text(transaction.data,
+                      textAlign: TextAlign.left,
+                      style: FlutterFlowTheme.of(context).bodySmall
+                      //  .override(fontSize: 16.0),
+                      ),
                 ),
               ],
             )),

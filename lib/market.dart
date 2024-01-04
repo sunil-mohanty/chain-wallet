@@ -43,7 +43,7 @@ class _AddAssetScreenState extends State<MarketScreen> {
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
-            return ListView.builder(
+            return ListView.separated(
               itemBuilder: (ctx, i) {
                 // return Column(
                 //   mainAxisSize: MainAxisSize.min,
@@ -62,12 +62,13 @@ class _AddAssetScreenState extends State<MarketScreen> {
                   children: [
                     Row(
                       children: [
+                        SizedBox(width: 25.0),
                         Container(
                           child: Image.network(coins[i].image),
                           height: 40,
                           width: 40,
                         ),
-                        SizedBox(width: 5.0),
+                        SizedBox(width: 40.0),
                         Container(
                             child: Column(
                           children: [
@@ -114,6 +115,9 @@ class _AddAssetScreenState extends State<MarketScreen> {
                     //SizedBox(height: 16.0),
                   ],
                 );
+              },
+              separatorBuilder: (context, index) {
+                return Divider(color: Color.fromARGB(255, 40, 22, 109));
               },
               itemCount: coins.length,
             );

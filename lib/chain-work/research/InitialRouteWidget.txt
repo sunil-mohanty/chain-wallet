@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_map_flutter_works/word_maker.dart';
-import 'chain-work/activity.dart';
-import 'CustomizedIcons.dart';
-import 'GameInputForm.dart';
-import 'SocialMediaIcons.dart';
-import 'form.dart';
-import 'map.dart';
+import '../activity.dart';
+import '../../CustomizedIcons.dart';
+import '../../GameInputForm.dart';
+import '../../SocialMediaIcons.dart';
+import '../../form.dart';
+import '../../map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_map_flutter_works/finwallet/home-page.dart';
-import 'router.dart';
-import 'MainScreen.dart';
+import '../../router.dart';
 
-class Signin extends StatefulWidget {
+class InitialRouteWidget extends StatefulWidget {
   @override
-  _SigninState createState() => new _SigninState();
+  InitialRouteWidgetState createState() => new InitialRouteWidgetState();
 }
 
-class _SigninState extends State<Signin> {
+class InitialRouteWidgetState extends State<InitialRouteWidget> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   //google sign
@@ -42,15 +41,18 @@ class _SigninState extends State<Signin> {
         print(e);
       });
     }*/
+    /*
+    Navigator.push(
+        //context, MaterialPageRoute(builder: (context) => const MapApp())
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                HomePageWidget(emailController.text, passwordController.text)));*/
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MainScreen(
-          initialArguments: {'username': '', 'password': ''},
-        ),
-      ),
-    );
+    ///MaterialPageRoute(builder: (context) => HomePageWidget('', ''));
+
+    Navigator.pushNamed(context, '/home',
+        arguments: {'username': '', 'password': ''});
   }
 
   bool _isSelected = false;

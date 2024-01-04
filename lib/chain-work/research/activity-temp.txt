@@ -7,27 +7,45 @@ import 'package:google_map_flutter_works/components/CircularButton.dart';
 import 'package:google_map_flutter_works/components/Transaction.dart';
 import 'package:google_map_flutter_works/signin.dart';
 import 'package:google_map_flutter_works/market.dart';
+import 'package:google_map_flutter_works/finwallet/home-page.dart';
+import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
 
-class Home extends StatefulWidget {
+class Activity extends StatefulWidget {
   final String? email;
   final String? password;
+  final List<Wallet> _wallets;
+  final List<Block> _blocks;
+  //Activity(this.email, this.password, {Key? key}) : super(key: key);
 
-  Home(this.email, this.password, {Key? key}) : super(key: key);
+  Activity.withEmailAndWalletsAndBlocks(
+      this.email, this.password, this._wallets, this._blocks,
+      {Key? key})
+      : super(key: key);
+
+  //@override
+  //_ActivityState createState() => _ActivityState(this.email);
 
   @override
-  _HomeState createState() => _HomeState(this.email);
+  _ActivityState createState() => _ActivityState.withEmailAndWalletsAndBlocks(
+      this.email, this._wallets, this._blocks);
 }
 
-class _HomeState extends State<Home> {
+class _ActivityState extends State<Activity> {
   final String? email;
-
-  _HomeState(this.email, {Key? key}) : super();
-
   late List<Wallet> _wallets = [];
   late List<Block> _blocks = [];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   Block? selectedBlock = null;
   Wallet? selectedWallet = null;
+  _ActivityState(this.email, {Key? key}) : super();
+
+  _ActivityState.withEmailAndWalletsAndBlocks(
+      this.email, this._wallets, this._blocks,
+      {Key? key})
+      : super() {
+    selectedWallet = _wallets.isNotEmpty ? _wallets.first : null;
+    selectedBlock = _blocks.isNotEmpty ? _blocks.first : null;
+  }
 
   // Define the current index for the selected tab in the bottom navigation bar
   int _currentIndex = 0;
@@ -35,8 +53,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    //_getData();
-    _getWallet();
+    //---_getData();
+    //_getWallet();
     _displayDummyData();
   }
 
@@ -163,10 +181,6 @@ class _HomeState extends State<Home> {
             colors: [
               Color.fromARGB(255, 13, 19, 133),
               Color.fromARGB(255, 87, 91, 35),
-              //Color(0xFF17ead9),
-              //Color(0xFF6078ea)
-              // Color.fromARGB(255, 54, 117, 179),
-              // Color.fromARGB(255, 2, 15, 28)
             ], // Adjust colors as needed
           ),
         ),
@@ -187,7 +201,7 @@ class _HomeState extends State<Home> {
             Center(
               child: Container(
                 width: 385.0,
-                height: 50.0,
+                height: 30.0,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8.0),
@@ -248,49 +262,27 @@ class _HomeState extends State<Home> {
                     color: Color.fromARGB(179, 249, 246, 246)),
               ),
             ),
-            SizedBox(height: 20.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CircularIconButton(
-                    icon: Icons.send,
-                    label: 'Send',
-                    onPressed: () => print('Send pressed')),
-                CircularIconButton(
-                    icon: Icons.arrow_downward,
-                    label: 'Reveive',
-                    onPressed: () => print('Receive pressed')),
-                CircularIconButton(
-                    icon: Icons.shopping_cart,
-                    label: 'Buy',
-                    onPressed: () => print('Buy pressed')),
-              ],
-            ),
+
             SizedBox(height: 20.0), // Add space before the transaction list
             Flexible(
               child: TransactionPanel(_blocks),
             ),
             SizedBox(height: 20.0),
-            /*
-            Expanded(
-              child: ListView.builder(
-                itemCount: _blocks.length,
-                itemBuilder: (context, index) {
-                  return CardContentWidget(_blocks, index);
-                },
-              ),
-            ),*/
           ],
         ),
       ),
-      drawer: Drawer(
-        // Drawer content goes here
 
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: DrawerContent(),
-        ),
-      ),
+      bottomNavigationBar: BottomNavigationBarScreen(),
+      // drawer: Drawer(
+      //   // Drawer content goes here
+
+      //   child: Container(
+      //     width: MediaQuery.of(context).size.width * 0.8,
+      //     child: DrawerContent(),
+      //   ),
+      // ),
+
+      /*
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -318,7 +310,8 @@ class _HomeState extends State<Home> {
               print('loadMarket tab pressed');
             } else if (index == 2) {
               // Handle the third tab
-              print('Third tab pressed');
+              print('Third tab [logout] pressed');
+              showLogoutDialog(context);
             }
           },
           items: [
@@ -336,16 +329,49 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-      ),
+      ),*/
     );
   }
 
-  loadMarket() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MarketScreen(),
-        ));
+  // loadMarket() {
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => HomePageWidget("", ""),
+  //       ));
+  // }
+
+  void showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Logout"),
+          content: Text("Are you sure you want to log out?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Close the dialog
+                Navigator.of(context).pop();
+              },
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                // Perform logout logic here
+                // For example, navigate to the login screen
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.push(
+                    //context, MaterialPageRoute(builder: (context) => const MapApp())
+                    context,
+                    MaterialPageRoute(builder: (context) => Signin()));
+              },
+              child: Text("Logout"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
@@ -456,7 +482,7 @@ class DrawerContent extends StatelessWidget {
                         Navigator.push(
                             //context, MaterialPageRoute(builder: (context) => const MapApp())
                             context,
-                            MaterialPageRoute(builder: (context) => MyApp1()));
+                            MaterialPageRoute(builder: (context) => Signin()));
                       },
                       child: Text('Logout'),
                     ),
@@ -470,38 +496,3 @@ class DrawerContent extends StatelessWidget {
     );
   }
 }
-  
-/*
-class CardContentWidget extends StatelessWidget {
-  List<Block> _blocks;
-  int index;
-
-  CardContentWidget(this._blocks, this.index);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(8.0),
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _blocks[index].timestamp,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              _blocks[index].data,
-              style: TextStyle(color: Colors.white, fontSize: 24.0),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}*/
