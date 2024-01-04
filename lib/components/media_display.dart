@@ -6,8 +6,8 @@ const _kSupportedVideoMimes = {'video/mp4', 'video/mpeg'};
 bool _isVideoPath(String path) =>
     _kSupportedVideoMimes.contains(mime(path.split('?').first));
 
-class FlutterFlowMediaDisplay extends StatelessWidget {
-  const FlutterFlowMediaDisplay({
+class ChainWorkMediaDisplay extends StatelessWidget {
+  const ChainWorkMediaDisplay({
     required this.path,
     required this.imageBuilder,
     required this.videoPlayerBuilder,

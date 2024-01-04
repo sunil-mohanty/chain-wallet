@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FlutterFlowCountController extends StatefulWidget {
-  const FlutterFlowCountController({
+class ChainWorkCountController extends StatefulWidget {
+  const ChainWorkCountController({
     Key? key,
     required this.decrementIconBuilder,
     required this.incrementIconBuilder,
@@ -25,12 +25,11 @@ class FlutterFlowCountController extends StatefulWidget {
   final EdgeInsetsGeometry contentPadding;
 
   @override
-  _FlutterFlowCountControllerState createState() =>
-      _FlutterFlowCountControllerState();
+  _ChainWorkCountControllerState createState() =>
+      _ChainWorkCountControllerState();
 }
 
-class _FlutterFlowCountControllerState
-    extends State<FlutterFlowCountController> {
+class _ChainWorkCountControllerState extends State<ChainWorkCountController> {
   int get count => widget.count;
   int? get minimum => widget.minimum;
   int? get maximum => widget.maximum;

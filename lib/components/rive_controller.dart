@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:rive/rive.dart';
 
-class FlutterFlowRiveController extends SimpleAnimation {
-  FlutterFlowRiveController(
+class ChainWorkRiveController extends SimpleAnimation {
+  ChainWorkRiveController(
     String animationName, {
     double mix = 1,
     bool autoplay = true,

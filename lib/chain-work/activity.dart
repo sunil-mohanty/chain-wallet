@@ -4,7 +4,7 @@ import 'wallet.dart';
 import 'api_service.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_map_flutter_works/components/CircularButton.dart';
-import 'package:google_map_flutter_works/components/Transaction.dart';
+import 'package:google_map_flutter_works/finwallet/Transaction.dart';
 import 'package:google_map_flutter_works/signin.dart';
 import 'package:google_map_flutter_works/market.dart';
 import 'package:google_map_flutter_works/finwallet/home-page.dart';

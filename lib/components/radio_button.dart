@@ -1,7 +1,7 @@
 /*
  * Copyright 2020 https://github.com/TercyoStorck
  *
- * Source code has been modified by FlutterFlow, Inc.
+ * Source code has been modified by ChainWork, Inc.
  * 
  * Redistribution and use in source and binary forms, with or without 
  * modification, are permitted provided that the following conditions are met:
@@ -28,8 +28,8 @@
 import 'form_field_controller.dart';
 import 'package:flutter/material.dart';
 
-class FlutterFlowRadioButton extends StatefulWidget {
-  const FlutterFlowRadioButton({
+class ChainWorkRadioButton extends StatefulWidget {
+  const ChainWorkRadioButton({
     required this.options,
     required this.onChanged,
     required this.controller,
@@ -64,10 +64,10 @@ class FlutterFlowRadioButton extends StatefulWidget {
   final WrapCrossAlignment verticalAlignment;
 
   @override
-  State<FlutterFlowRadioButton> createState() => _FlutterFlowRadioButtonState();
+  State<ChainWorkRadioButton> createState() => _ChainWorkRadioButtonState();
 }
 
-class _FlutterFlowRadioButtonState extends State<FlutterFlowRadioButton> {
+class _ChainWorkRadioButtonState extends State<ChainWorkRadioButton> {
   void Function()? get listener => widget.onChanged != null
       ? () => widget.onChanged!(widget.controller.value)
       : null;

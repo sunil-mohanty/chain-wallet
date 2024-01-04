@@ -181,7 +181,7 @@ class _TabBarScrollPosition extends ScrollPositionWithSingleContext {
           oldPosition: oldPosition,
         );
 
-  final _FlutterFlowButtonTabBarState tabBar;
+  final _ChainWorkButtonTabBarState tabBar;
 
   bool _viewportDimensionWasNonZero = false;
 
@@ -221,7 +221,7 @@ class _TabBarScrollPosition extends ScrollPositionWithSingleContext {
 class _TabBarScrollController extends ScrollController {
   _TabBarScrollController(this.tabBar);
 
-  final _FlutterFlowButtonTabBarState tabBar;
+  final _ChainWorkButtonTabBarState tabBar;
 
   @override
   ScrollPosition createScrollPosition(ScrollPhysics physics,
@@ -235,8 +235,8 @@ class _TabBarScrollController extends ScrollController {
   }
 }
 
-/// A Flutterflow Design widget that displays a horizontal row of tabs.
-class FlutterFlowButtonTabBar extends StatefulWidget
+/// A ChainWork Design widget that displays a horizontal row of tabs.
+class ChainWorkButtonTabBar extends StatefulWidget
     implements PreferredSizeWidget {
   /// The [tabs] argument must not be null and its length must match the [controller]'s
   /// [TabController.length].
@@ -244,7 +244,7 @@ class FlutterFlowButtonTabBar extends StatefulWidget
   /// If a [TabController] is not provided, then there must be a
   /// [DefaultTabController] ancestor.
   ///
-  const FlutterFlowButtonTabBar({
+  const ChainWorkButtonTabBar({
     Key? key,
     required this.tabs,
     this.controller,
@@ -286,7 +286,7 @@ class FlutterFlowButtonTabBar extends StatefulWidget
   /// Whether this tab bar can be scrolled horizontally.
   ///
   /// If [isScrollable] is true, then each tab is as wide as needed for its label
-  /// and the entire [FlutterFlowButtonTabBar] is scrollable. Otherwise each tab gets an equal
+  /// and the entire [ChainWorkButtonTabBar] is scrollable. Otherwise each tab gets an equal
   /// share of the available space.
   final bool isScrollable;
 
@@ -376,11 +376,10 @@ class FlutterFlowButtonTabBar extends StatefulWidget
   }
 
   @override
-  State<FlutterFlowButtonTabBar> createState() =>
-      _FlutterFlowButtonTabBarState();
+  State<ChainWorkButtonTabBar> createState() => _ChainWorkButtonTabBarState();
 }
 
-class _FlutterFlowButtonTabBarState extends State<FlutterFlowButtonTabBar>
+class _ChainWorkButtonTabBarState extends State<ChainWorkButtonTabBar>
     with TickerProviderStateMixin {
   ScrollController? _scrollController;
   TabController? _controller;
@@ -474,7 +473,7 @@ class _FlutterFlowButtonTabBarState extends State<FlutterFlowButtonTabBar>
   }
 
   @override
-  void didUpdateWidget(FlutterFlowButtonTabBar oldWidget) {
+  void didUpdateWidget(ChainWorkButtonTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.controller != oldWidget.controller) {
       _updateTabController();

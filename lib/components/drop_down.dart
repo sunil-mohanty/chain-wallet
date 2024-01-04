@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FlutterFlowDropDown extends StatefulWidget {
-  const FlutterFlowDropDown({
+class ChainWorkDropDown extends StatefulWidget {
+  const ChainWorkDropDown({
     this.initialOption,
     this.hintText,
     required this.options,
@@ -36,10 +36,10 @@ class FlutterFlowDropDown extends StatefulWidget {
   final bool hidesUnderline;
 
   @override
-  State<FlutterFlowDropDown> createState() => _FlutterFlowDropDownState();
+  State<ChainWorkDropDown> createState() => _ChainWorkDropDownState();
 }
 
-class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
+class _ChainWorkDropDownState extends State<ChainWorkDropDown> {
   String? dropDownValue;
   List<String> get effectiveOptions =>
       widget.options.isEmpty ? ['[Option]'] : widget.options;

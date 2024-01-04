@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_map_flutter_works/chain-work/block.dart';
 
-import 'package:google_map_flutter_works/flow/flutter_flow_animations.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_theme.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_util.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_widgets.dart';
+import 'package:google_map_flutter_works/components/animations.dart';
+import 'package:google_map_flutter_works/components/theme.dart';
+import 'package:google_map_flutter_works/components/util.dart';
+import 'package:google_map_flutter_works/components/widgets.dart';
 
 class TransactionPanel extends StatefulWidget {
   final List<Block> transactions;
@@ -64,7 +64,7 @@ class _TransactionPanelState extends State<TransactionPanel> {
         children: [
           Text('Transactions',
               textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).titleMedium
+              style: ChainWorkTheme.of(context).titleMedium
               // .override(fontWeight: FontWeight.bold),
               ),
           Divider(
@@ -146,7 +146,7 @@ class TransactionItem extends StatelessWidget {
                       170.0, // Adjust the width as needed
                   child: Text(transaction.timestamp,
                       textAlign: TextAlign.left,
-                      style: FlutterFlowTheme.of(context).bodySmall
+                      style: ChainWorkTheme.of(context).bodySmall
                       // .override(
                       //       fontSize: 16.0,
                       //       fontWeight: FontWeight.bold,
@@ -158,7 +158,7 @@ class TransactionItem extends StatelessWidget {
                       170.0, // Adjust the width as needed
                   child: Text(transaction.data,
                       textAlign: TextAlign.left,
-                      style: FlutterFlowTheme.of(context).bodySmall
+                      style: ChainWorkTheme.of(context).bodySmall
                       //  .override(fontSize: 16.0),
                       ),
                 ),

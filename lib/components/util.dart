@@ -9,7 +9,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 export 'lat_lng.dart';
 export 'place.dart';
-export 'flutter_flow_model.dart';
+export 'model.dart';
 export 'dart:math' show min, max;
 export 'dart:typed_data' show Uint8List;
 export 'dart:convert' show jsonEncode, jsonDecode;

@@ -34,8 +34,8 @@ class ChipStyle {
   final BorderRadius? borderRadius;
 }
 
-class FlutterFlowChoiceChips extends StatefulWidget {
-  const FlutterFlowChoiceChips({
+class ChainWorkChoiceChips extends StatefulWidget {
+  const ChainWorkChoiceChips({
     required this.options,
     required this.onChanged,
     required this.controller,
@@ -60,10 +60,10 @@ class FlutterFlowChoiceChips extends StatefulWidget {
   final WrapAlignment alignment;
 
   @override
-  State<FlutterFlowChoiceChips> createState() => _FlutterFlowChoiceChipsState();
+  State<ChainWorkChoiceChips> createState() => _ChainWorkChoiceChipsState();
 }
 
-class _FlutterFlowChoiceChipsState extends State<FlutterFlowChoiceChips> {
+class _ChainWorkChoiceChipsState extends State<ChainWorkChoiceChips> {
   late List<String> choiceChipValues;
   ValueListenable<List<String>?> get changeSelectedValues => widget.controller;
   List<String> get selectedValues => widget.controller.value ?? [];

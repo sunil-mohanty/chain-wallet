@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 
-class FlutterFlowSwipeableStack extends StatefulWidget {
-  const FlutterFlowSwipeableStack({
+class ChainWorkSwipeableStack extends StatefulWidget {
+  const ChainWorkSwipeableStack({
     Key? key,
     required this.topCardHeightFraction,
     required this.middleCardHeightFraction,
@@ -55,7 +55,7 @@ List<Widget> getItems(int itemCount, BuildContext context,
   return items;
 }
 
-class _FFSwipeableStackState extends State<FlutterFlowSwipeableStack> {
+class _FFSwipeableStackState extends State<ChainWorkSwipeableStack> {
   @override
   Widget build(BuildContext context) => Column(
         children: [

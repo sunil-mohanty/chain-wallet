@@ -26,8 +26,8 @@ bool isSameMonth(DateTime? a, DateTime? b) {
   return a.year == b.year && a.month == b.month;
 }
 
-class FlutterFlowCalendar extends StatefulWidget {
-  const FlutterFlowCalendar({
+class ChainWorkCalendar extends StatefulWidget {
+  const ChainWorkCalendar({
     Key? key,
     required this.color,
     this.onChange,
@@ -59,10 +59,10 @@ class FlutterFlowCalendar extends StatefulWidget {
   final String? locale;
 
   @override
-  State<StatefulWidget> createState() => _FlutterFlowCalendarState();
+  State<StatefulWidget> createState() => _ChainWorkCalendarState();
 }
 
-class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
+class _ChainWorkCalendarState extends State<ChainWorkCalendar> {
   late DateTime focusedDay;
   late DateTime selectedDay;
   late DateTimeRange selectedRange;

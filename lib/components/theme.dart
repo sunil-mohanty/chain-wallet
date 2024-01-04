@@ -97,7 +97,7 @@
 // class ThemeNotifier extends ChangeNotifier {
 //   static bool hasInitializedIsLightMode = false;
 //
-//   bool isLightMode = FlutterFlowTheme.prefs?.getBool(kThemeModeKey) ?? false;
+//   bool isLightMode = ChainWorkTheme.prefs?.getBool(kThemeModeKey) ?? false;
 //   bool isHolidayTheme = false;
 //
 //   ThemeMode get mode => isLightMode ? ThemeMode.light : ThemeMode.dark;
@@ -112,13 +112,13 @@
 //   }
 // }
 //
-// abstract class FlutterFlowTheme {
+// abstract class ChainWorkTheme {
 //   static SharedPreferences? prefs;
 //
 //   static Future initialize() async =>
 //       prefs = await SharedPreferences.getInstance();
 //
-//   static FlutterFlowTheme of(BuildContext context) {
+//   static ChainWorkTheme of(BuildContext context) {
 //     final theme = Theme.of(context);
 //     final isLightMode = theme.brightness == Brightness.light;
 //     return isLightMode ? LightModeTheme() : DarkModeTheme();
@@ -417,7 +417,7 @@
 //       );
 // }
 //
-// class LightModeTheme extends FlutterFlowTheme {
+// class LightModeTheme extends ChainWorkTheme {
 //   @override
 //   bool get isLightMode => true;
 //
@@ -451,7 +451,7 @@
 //   late Color accent4 = const Color(0xccffffff);
 // }
 //
-// class DarkModeTheme extends FlutterFlowTheme {
+// class DarkModeTheme extends ChainWorkTheme {
 //   @override
 //   bool get isLightMode => false;
 //
@@ -485,7 +485,7 @@
 //   late Color accent4 = const Color(0xcb1a1f24);
 // }
 //
-// class HolidayDarkModeTheme extends FlutterFlowTheme {
+// class HolidayDarkModeTheme extends ChainWorkTheme {
 //   @override
 //   bool get isLightMode => false;
 //
@@ -534,7 +534,7 @@
 //   late Color lineColor = const Color(0xFF323B45);
 // }
 //
-// class HolidayLightModeTheme extends FlutterFlowTheme {
+// class HolidayLightModeTheme extends ChainWorkTheme {
 //   @override
 //   bool get isLightMode => true;
 //
@@ -583,8 +583,8 @@
 //   late Color lineColor = const Color(0xFFE0E3E7);
 // }
 //
-// extension FlutterFlowThemeExtensions on BuildContext {
-//   FlutterFlowTheme get theme => FlutterFlowTheme.of(this);
+// extension ChainWorkThemeExtensions on BuildContext {
+//   ChainWorkTheme get theme => ChainWorkTheme.of(this);
 //
 //   bool get isLightMode => theme.isLightMode;
 // }
@@ -634,8 +634,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 const kThemeModeKey = '__theme_mode__';
 
-abstract class FlutterFlowTheme {
-  static FlutterFlowTheme of(BuildContext context) {
+abstract class ChainWorkTheme {
+  static ChainWorkTheme of(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark
         ? DarkModeTheme()
         : LightModeTheme();
@@ -731,7 +731,7 @@ abstract class FlutterFlowTheme {
   Typography get typography => ThemeTypography(this);
 }
 
-class LightModeTheme extends FlutterFlowTheme {
+class LightModeTheme extends ChainWorkTheme {
   @Deprecated('Use primary instead')
   Color get primaryColor => primary;
   @Deprecated('Use secondary instead')
@@ -798,7 +798,7 @@ abstract class Typography {
 class ThemeTypography extends Typography {
   ThemeTypography(this.theme);
 
-  final FlutterFlowTheme theme;
+  final ChainWorkTheme theme;
 
   String get displayLargeFamily => 'Outfit';
   TextStyle get displayLarge => GoogleFonts.getFont(
@@ -907,7 +907,7 @@ class ThemeTypography extends Typography {
       );
 }
 
-class DarkModeTheme extends FlutterFlowTheme {
+class DarkModeTheme extends ChainWorkTheme {
   @Deprecated('Use primary instead')
   Color get primaryColor => primary;
   @Deprecated('Use secondary instead')

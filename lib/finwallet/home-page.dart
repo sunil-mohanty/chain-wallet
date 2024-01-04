@@ -1,7 +1,7 @@
-import 'package:google_map_flutter_works/flow/flutter_flow_animations.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_theme.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_util.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_widgets.dart';
+import 'package:google_map_flutter_works/components/animations.dart';
+import 'package:google_map_flutter_works/components/theme.dart';
+import 'package:google_map_flutter_works/components/util.dart';
+import 'package:google_map_flutter_works/components/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -18,8 +18,8 @@ import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
 
 //import 'l10n/l10n.dart';
 
-import 'package:google_map_flutter_works/flow/profilepage_model.dart';
-export 'package:google_map_flutter_works/flow/profilepage_model.dart';
+import 'package:google_map_flutter_works/components/profilepage_model.dart';
+export 'package:google_map_flutter_works/components/profilepage_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   //final String? email;
@@ -156,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
         key: scaffoldKey,
 
         //backgroundColor: DarkModeTheme()
-        //    .primaryBackground, //FlutterFlowTheme.of(context).primaryBackground,
+        //    .primaryBackground, //ChainWorkTheme.of(context).primaryBackground,
 
         body: Container(
           //SafeArea(
@@ -191,11 +191,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             'Wallet Balance',
                         /* Wallet Balance */
 
-                        style: FlutterFlowTheme.of(context).titleMedium,
+                        style: ChainWorkTheme.of(context).titleMedium,
                       ),
                       Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: ChainWorkTheme.of(context).primary,
                         elevation: 2,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40),
@@ -230,12 +230,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         //
                         AppLocalizations.of(context)?.balance ?? '\$23,000',
 
-                        style:
-                            FlutterFlowTheme.of(context).displaySmall.override(
-                                  fontFamily: 'Lexend',
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                        style: ChainWorkTheme.of(context).displaySmall.override(
+                              fontFamily: 'Lexend',
+                              fontSize: 36,
+                              fontWeight: FontWeight.w300,
+                            ),
                       ),
                     ],
                   ),
@@ -249,9 +248,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       Text(
                         AppLocalizations.of(context)?.currencies ??
                             '3 currencies',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: ChainWorkTheme.of(context).bodyMedium.override(
                               fontFamily: 'Lexend',
-                              color: FlutterFlowTheme.of(context).tertiary,
+                              color: ChainWorkTheme.of(context).tertiary,
                             ),
                       ),
                     ],
@@ -268,7 +267,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.24,
                           // decoration: BoxDecoration(
-                          //   color: FlutterFlowTheme.of(context)
+                          //   color: ChainWorkTheme.of(context)
                           //       .secondaryBackground,
                           //   borderRadius: BorderRadius.circular(8),
                           // ),
@@ -299,8 +298,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       0, 0, 0, 12),
                                   child: Icon(
                                     Icons.account_balance_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                    color:
+                                        ChainWorkTheme.of(context).primaryText,
                                     size: 36,
                                   ),
                                 ),
@@ -313,7 +312,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.getFont(
                                       'Lexend Deca',
-                                      color: FlutterFlowTheme.of(context)
+                                      color: ChainWorkTheme.of(context)
                                           .primaryText,
                                       fontSize: 12,
                                     ),
@@ -376,7 +375,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         0, 0, 0, 12),
                                     child: Icon(
                                       Icons.swap_horiz_outlined,
-                                      color: FlutterFlowTheme.of(context)
+                                      color: ChainWorkTheme.of(context)
                                           .primaryText,
                                       size: 36,
                                     ),
@@ -389,7 +388,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           'Transfer',
                                       style: GoogleFonts.getFont(
                                         'Lexend Deca',
-                                        color: FlutterFlowTheme.of(context)
+                                        color: ChainWorkTheme.of(context)
                                             .primaryText,
                                         fontSize: 12,
                                       ),
@@ -449,7 +448,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         0, 0, 0, 12),
                                     child: Icon(
                                       Icons.stacked_line_chart_rounded,
-                                      color: FlutterFlowTheme.of(context)
+                                      color: ChainWorkTheme.of(context)
                                           .primaryText,
                                       size: 36,
                                     ),
@@ -462,7 +461,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           'Activity',
                                       style: GoogleFonts.getFont(
                                         'Lexend Deca',
-                                        color: FlutterFlowTheme.of(context)
+                                        color: ChainWorkTheme.of(context)
                                             .primaryText,
                                         fontSize: 12,
                                       ),
@@ -505,8 +504,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 Text(
                                   AppLocalizations.of(context)?.bitcoin ??
                                       'Bitcoin',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall,
+                                  style:
+                                      ChainWorkTheme.of(context).headlineSmall,
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -520,7 +519,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         AppLocalizations.of(context)
                                                 ?.bitcoinBalance ??
                                             '\$7,302',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: ChainWorkTheme.of(context)
                                             .displaySmall,
                                       ),
                                     ),
@@ -528,7 +527,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         AppLocalizations.of(context)
                                                 ?.bitcoinPortfolio ??
                                             '32% of portfolio',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: ChainWorkTheme.of(context)
                                             .bodyMedium
                                         // .override(
                                         //   fontFamily: 'Lexend',
@@ -555,20 +554,20 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           animation: true,
                                           animateFromLastPercent: true,
                                           progressColor:
-                                              FlutterFlowTheme.of(context)
+                                              ChainWorkTheme.of(context)
                                                   .primaryText,
                                           backgroundColor: Color(0x33F1F4F8),
                                           center: Text(
                                             AppLocalizations.of(context)
                                                     ?.firstBalnk ??
                                                 '',
-                                            style: FlutterFlowTheme.of(context)
+                                            style: ChainWorkTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Lexend',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
+                                                  color:
+                                                      ChainWorkTheme.of(context)
+                                                          .primary,
                                                 ),
                                           ),
                                           barRadius: Radius.circular(40),
@@ -610,7 +609,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         children: [
                           Text(
                             AppLocalizations.of(context)?.solana ?? 'Solana',
-                            style: FlutterFlowTheme.of(context).headlineSmall,
+                            style: ChainWorkTheme.of(context).headlineSmall,
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -623,14 +622,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   AppLocalizations.of(context)?.solanaBalance ??
                                       '\$7,403',
                                   style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                      ChainWorkTheme.of(context).displaySmall,
                                 ),
                               ),
                               Text(
                                 AppLocalizations.of(context)
                                         ?.solanaPortfolioPercentage ??
                                     '40% of portfolio',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                style: ChainWorkTheme.of(context).bodyMedium,
                               ),
                             ],
                           ),
@@ -648,16 +647,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   animation: true,
                                   animateFromLastPercent: true,
                                   progressColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                      ChainWorkTheme.of(context).primaryText,
                                   backgroundColor: Color(0x33F1F4F8),
                                   center: Text(
                                     AppLocalizations.of(context)?.secondBlank ??
                                         '',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: ChainWorkTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Lexend',
-                                          color: FlutterFlowTheme.of(context)
+                                          color: ChainWorkTheme.of(context)
                                               .primary,
                                         ),
                                   ),
@@ -700,7 +699,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           Text(
                             AppLocalizations.of(context)?.dogeCoin ??
                                 'Dogecoin',
-                            style: FlutterFlowTheme.of(context).headlineSmall,
+                            style: ChainWorkTheme.of(context).headlineSmall,
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -714,14 +713,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           ?.dogeCoinBalance ??
                                       '\$7,403',
                                   style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                      ChainWorkTheme.of(context).displaySmall,
                                 ),
                               ),
                               Text(
                                 AppLocalizations.of(context)
                                         ?.dogeCoinPortfolioPercentage ??
                                     '40% of portfolio',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                style: ChainWorkTheme.of(context).bodyMedium,
                               ),
                             ],
                           ),
@@ -739,17 +738,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   animation: true,
                                   animateFromLastPercent: true,
                                   progressColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                      ChainWorkTheme.of(context).primaryText,
                                   backgroundColor:
                                       Color.fromARGB(51, 93, 114, 142),
                                   center: Text(
                                     AppLocalizations.of(context)?.thirdBlank ??
                                         '',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: ChainWorkTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Lexend',
-                                          color: FlutterFlowTheme.of(context)
+                                          color: ChainWorkTheme.of(context)
                                               .primary,
                                         ),
                                   ),

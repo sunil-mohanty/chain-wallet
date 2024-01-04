@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FlutterFlowCheckboxGroup extends StatefulWidget {
-  const FlutterFlowCheckboxGroup({
+class ChainWorkCheckboxGroup extends StatefulWidget {
+  const ChainWorkCheckboxGroup({
     this.initiallySelected,
     required this.options,
     required this.onChanged,
@@ -26,11 +26,10 @@ class FlutterFlowCheckboxGroup extends StatefulWidget {
   final Color checkboxBorderColor;
 
   @override
-  State<FlutterFlowCheckboxGroup> createState() =>
-      _FlutterFlowCheckboxGroupState();
+  State<ChainWorkCheckboxGroup> createState() => _ChainWorkCheckboxGroupState();
 }
 
-class _FlutterFlowCheckboxGroupState extends State<FlutterFlowCheckboxGroup> {
+class _ChainWorkCheckboxGroupState extends State<ChainWorkCheckboxGroup> {
   late List<String> checkboxValues;
 
   @override

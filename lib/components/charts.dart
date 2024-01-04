@@ -7,8 +7,8 @@ import 'package:intl/intl.dart';
 export 'package:fl_chart/fl_chart.dart'
     show BarAreaData, FlDotData, LineChartBarData;
 
-class FlutterFlowLineChart extends StatelessWidget {
-  const FlutterFlowLineChart(
+class ChainWorkLineChart extends StatelessWidget {
+  const ChainWorkLineChart(
       {Key? key,
       required this.data,
       required this.xAxisLabelInfo,

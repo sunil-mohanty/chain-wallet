@@ -8,8 +8,8 @@ export 'package:flutter_credit_card/flutter_credit_card.dart'
 
 CreditCardModel emptyCreditCard() => CreditCardModel('', '', '', '', false);
 
-class FlutterFlowCreditCardForm extends StatefulWidget {
-  const FlutterFlowCreditCardForm({
+class ChainWorkCreditCardForm extends StatefulWidget {
+  const ChainWorkCreditCardForm({
     Key? key,
     required this.formKey,
     required this.creditCardModel,
@@ -31,11 +31,11 @@ class FlutterFlowCreditCardForm extends StatefulWidget {
   final InputDecoration inputDecoration;
 
   @override
-  _FlutterFlowCreditCardFormState createState() =>
-      _FlutterFlowCreditCardFormState();
+  _ChainWorkCreditCardFormState createState() =>
+      _ChainWorkCreditCardFormState();
 }
 
-class _FlutterFlowCreditCardFormState extends State<FlutterFlowCreditCardForm> {
+class _ChainWorkCreditCardFormState extends State<ChainWorkCreditCardForm> {
   final MaskedTextController _cardNumberController =
       MaskedTextController(mask: '0000 0000 0000 0000');
   final TextEditingController _expiryDateController =
