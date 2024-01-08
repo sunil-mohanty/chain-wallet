@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_map_flutter_works/finwallet/home-page.dart';
 import 'signin.dart';
 import 'package:google_map_flutter_works/chain-work/activity.dart';
+import 'package:google_map_flutter_works/finwallet/transfer.dart';
 import 'market.dart';
 
 class MainScreen extends StatefulWidget {
@@ -102,6 +103,7 @@ class _MainScreenState extends State<MainScreen> {
       },
       '/home': (context) => HomePageWidget(),
       '/activity': (context) => Activity(),
+      '/transfer': (context) => Transfer(),
     };
   }
 

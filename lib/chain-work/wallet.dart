@@ -17,7 +17,8 @@ class Wallet {
 
   factory Wallet.fromJson(Map<String, dynamic> json) => Wallet(
         walletId: json["walletId"],
-        balance: json["balance"],
+        //balance: json["balance"],
+        balance: (json["balance"] as num).toDouble(),
       );
 
   Map<String, dynamic> toJson() => {

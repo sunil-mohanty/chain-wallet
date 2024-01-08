@@ -137,7 +137,7 @@ class _SigninState extends State<Signin> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text("STELLAR",
+                      Text("MAGNATE",
                           style: TextStyle(
                             fontFamily: "Poppins-Bold",
                             fontSize: ScreenUtil.getInstance().setSp(30),

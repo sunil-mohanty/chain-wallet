@@ -37,7 +37,7 @@ class ApiService {
 
   Future<List<Wallet>?> listWallets(String? userName) async {
     try {
-      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.WALLETS);
+      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.WALLET);
 
       Map<String, dynamic> requestBody = {
         'userName': userName

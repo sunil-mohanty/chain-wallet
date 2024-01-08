@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
+import 'package:google_map_flutter_works/finwallet/transfer.dart';
 
 import 'signin.dart';
 import 'package:google_map_flutter_works/chain-work/activity.dart';
@@ -30,7 +30,12 @@ class RouterPage extends StatelessWidget {
               settings:
                   RouteSettings(name: '/activty', arguments: initialArguments),
             );
-
+          case '/transfer':
+            return MaterialPageRoute(
+              builder: (context) => Transfer(),
+              settings:
+                  RouteSettings(name: '/transfer', arguments: initialArguments),
+            );
           default:
             // Handle unknown routes or return a default route
             return MaterialPageRoute(

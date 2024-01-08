@@ -228,7 +228,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         // AppLocalizations.of(context).getText(
                         //   'fgf8icmv' /* $23,000 */,
                         //
-                        AppLocalizations.of(context)?.balance ?? '\$23,000',
+                        AppLocalizations.of(context)?.balance ?? '\AED 23,000',
 
                         style: ChainWorkTheme.of(context).displaySmall.override(
                               fontFamily: 'Lexend',
@@ -331,17 +331,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              Navigator.pushNamed(
-                                context,
-                                'transferFunds',
-                                arguments: <String, dynamic>{
-                                  kTransitionInfoKey: PageTransition(
-                                    child: MarketScreen(),
-                                    type: PageTransitionType.bottomToTop,
-                                    duration: Duration(milliseconds: 220),
-                                  ),
-                                },
-                              );
+                              Navigator.pushNamed(context, '/transfer',
+                                  arguments: {'username': ''});
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.24,
@@ -503,7 +494,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               children: [
                                 Text(
                                   AppLocalizations.of(context)?.bitcoin ??
-                                      'Bitcoin',
+                                      'Magnate',
                                   style:
                                       ChainWorkTheme.of(context).headlineSmall,
                                 ),
@@ -518,7 +509,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       child: Text(
                                         AppLocalizations.of(context)
                                                 ?.bitcoinBalance ??
-                                            '\$7,302',
+                                            '\AED 7,302',
                                         style: ChainWorkTheme.of(context)
                                             .displaySmall,
                                       ),
@@ -608,7 +599,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context)?.solana ?? 'Solana',
+                            AppLocalizations.of(context)?.solana ?? 'Tether',
                             style: ChainWorkTheme.of(context).headlineSmall,
                           ),
                           Row(
@@ -620,7 +611,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                 child: Text(
                                   AppLocalizations.of(context)?.solanaBalance ??
-                                      '\$7,403',
+                                      '\AED 7,403',
                                   style:
                                       ChainWorkTheme.of(context).displaySmall,
                                 ),
@@ -697,8 +688,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            AppLocalizations.of(context)?.dogeCoin ??
-                                'Dogecoin',
+                            AppLocalizations.of(context)?.dogeCoin ?? 'Ripple',
                             style: ChainWorkTheme.of(context).headlineSmall,
                           ),
                           Row(
@@ -711,7 +701,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 child: Text(
                                   AppLocalizations.of(context)
                                           ?.dogeCoinBalance ??
-                                      '\$7,403',
+                                      '\AED 7,403',
                                   style:
                                       ChainWorkTheme.of(context).displaySmall,
                                 ),
