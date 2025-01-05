@@ -1,7 +1,7 @@
-import 'package:google_map_flutter_works/components/animations.dart';
-import 'package:google_map_flutter_works/components/theme.dart';
-import 'package:google_map_flutter_works/components/util.dart';
-import 'package:google_map_flutter_works/components/widgets.dart';
+import 'package:chain_wallet/components/animations.dart';
+import 'package:chain_wallet/components/theme.dart';
+import 'package:chain_wallet/components/util.dart';
+import 'package:chain_wallet/components/widgets.dart';
 import '../finwallet/home-page.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

@@ -5,7 +5,7 @@ import 'constants.dart';
 import 'block.dart';
 import 'wallet.dart';
 import 'dart:convert';
-import 'package:google_map_flutter_works/chain-work/coin.dart';
+import 'package:chain_wallet/chain-work/coin.dart';
 
 class ApiService {
   Future<List<Block>?> getBlocks() async {
@@ -101,7 +101,7 @@ class ApiService {
 
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      print(response.body);
+      //print(response.body);
       coins = coinFromJson(response.body);
       return coins;
     }

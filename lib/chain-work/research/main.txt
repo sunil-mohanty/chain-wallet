@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'signin.dart';
 import 'chain-work/activity.dart';
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
 import 'router.dart';
 //import 'MainScreen1.dart';
 

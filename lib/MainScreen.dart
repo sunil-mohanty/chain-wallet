@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
 import 'signin.dart';
-import 'package:google_map_flutter_works/chain-work/activity.dart';
-import 'package:google_map_flutter_works/finwallet/transfer.dart';
+import 'package:chain_wallet/chain-work/activity.dart';
+import 'package:chain_wallet/finwallet/transfer.dart';
+import 'package:chain_wallet/chain-work/onboard/liveness.dart';
 import 'market.dart';
 
 class MainScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('initialArguments in the MainScreen  $initialArguments');
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
@@ -91,26 +93,29 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Map<String, WidgetBuilder> _routeBuilders(BuildContext context, int index) {
+  Map<String, WidgetBuilder> _routeBuilders(
+      BuildContext context, int index, Map<String, dynamic>? initialArguments) {
     print('index in side the _routeBuilders : $index');
     return {
       '/': (context) {
         return [
-          HomePageWidget(),
+          HomePageWidget(arguments: initialArguments),
           MarketScreen(),
           Signin(),
         ].elementAt(index);
       },
-      '/home': (context) => HomePageWidget(),
+      '/home': (context) => HomePageWidget(arguments: initialArguments),
       '/activity': (context) => Activity(),
-      '/transfer': (context) => Transfer(),
+      //'/transfer': (context) => Transfer(),
+      '/transfer': (context) => LivenessState(),
     };
   }
 
   Widget _buildOffstageNavigator(
       int index, Map<String, dynamic>? initialArguments) {
-    var routeBuilders = _routeBuilders(context, index);
+    var routeBuilders = _routeBuilders(context, index, initialArguments);
     print('index $index');
+    print('_buildOffstageNavigator initialArguments $initialArguments');
     return Offstage(
       offstage: _selectedIndex != index,
       child: Navigator(

@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:google_map_flutter_works/chain-work/coin.dart';
-import 'package:google_map_flutter_works/chain-work/api_service.dart';
+import 'package:chain_wallet/chain-work/coin.dart';
+import 'package:chain_wallet/chain-work/api_service.dart';
 
 class MarketScreen extends StatefulWidget {
   @override
-  _AddAssetScreenState createState() => _AddAssetScreenState();
+  _MarketScreenState createState() => _MarketScreenState();
 }
 
-class _AddAssetScreenState extends State<MarketScreen> {
+class _MarketScreenState extends State<MarketScreen> {
   late List<Coin> coins = [];
 
   @override
   void initState() {
     super.initState();
     print('in the initState of market rates');
-    _getData();
   }
 
-  Future<void> _getData() async {
+  Future<List<Coin>> _getData() async {
     try {
       List<Coin> fetchedCoins = await ApiService().getCoinRates() ?? [];
-      setState(() {
-        coins = fetchedCoins;
-      });
+      return fetchedCoins; // Return the fetched data
     } catch (error) {
       // Handle error
       print("Error fetching data: $error");
+      return [];
     }
-    print(coins);
   }
 
   @override
@@ -36,27 +33,20 @@ class _AddAssetScreenState extends State<MarketScreen> {
       appBar: AppBar(
         title: Text('Market Rates'),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<List<Coin>>(
+        future: _getData(), // Pass the future to the FutureBuilder
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No data available'));
           } else {
+            List<Coin> coins = snapshot.data!; // Extract the data
+
             return ListView.separated(
               itemBuilder: (ctx, i) {
-                // return Column(
-                //   mainAxisSize: MainAxisSize.min,
-                //   children: <Widget>[
-                //     ListTile(
-                //       title: Text(coins[i].name ?? ''),
-                //     ),
-                //     Divider(
-                //       height: 0,
-                //     )
-                //   ],
-                // );
-
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -70,49 +60,34 @@ class _AddAssetScreenState extends State<MarketScreen> {
                         ),
                         SizedBox(width: 40.0),
                         Container(
-                            child: Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width -
-                                  170.0, // Adjust the width as needed
-                              child: Text(
-                                coins[i].name ?? '',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width - 170.0,
+                                child: Text(
+                                  coins[i].name ?? '',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width -
-                                  170.0, // Adjust the width as needed
-                              child: Text(
-                                coins[i].currentPrice.toString() ?? '',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 16.0),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 170.0,
+                                child: Text(
+                                  coins[i].currentPrice.toString() ?? '',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(fontSize: 16.0),
+                                ),
                               ),
-                            ),
-                          ],
-                        )),
+                            ],
+                          ),
+                        ),
                         SizedBox(width: 5.0),
-                        // Text(
-                        //   '${transaction.isSend ? '-' : '+'}${transaction.amount}',
-                        //   style: TextStyle(
-                        //     fontSize: 20.0,
-                        //     color:
-                        //         transaction.isSend ? Colors.red : Colors.green,
-                        //   ),
-                        // ),
                       ],
                     ),
                     SizedBox(height: 8.0),
-                    /*
-        Text(
-          transaction.data,
-          style: TextStyle(fontSize: 16.0),
-        ),*/
-                    //SizedBox(height: 16.0),
                   ],
                 );
               },

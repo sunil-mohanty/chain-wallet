@@ -1,7 +1,7 @@
-import 'package:google_map_flutter_works/components/animations.dart';
-import 'package:google_map_flutter_works/components/theme.dart';
-import 'package:google_map_flutter_works/components/util.dart';
-import 'package:google_map_flutter_works/components/widgets.dart';
+import 'package:chain_wallet/components/animations.dart';
+import 'package:chain_wallet/components/theme.dart';
+import 'package:chain_wallet/components/util.dart';
+import 'package:chain_wallet/components/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -12,23 +12,23 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_map_flutter_works/market.dart';
-import 'package:google_map_flutter_works/chain-work/activity.dart';
-import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
+import 'package:chain_wallet/market.dart';
+import 'package:chain_wallet/chain-work/activity.dart';
+import 'package:chain_wallet/BottomNavigationBarScreen.dart';
 
 //import 'l10n/l10n.dart';
 
-import 'package:google_map_flutter_works/components/profilepage_model.dart';
-export 'package:google_map_flutter_works/components/profilepage_model.dart';
+import 'package:chain_wallet/components/profilepage_model.dart';
+export 'package:chain_wallet/components/profilepage_model.dart';
 
 class HomePageWidget extends StatefulWidget {
-  //final String? email;
+  //final String? username;
   //final String? password;
 
   //final VoidCallback onActivityPressed;
 
   //HomePageWidget({required this.onTransfersPressed});
-  //const HomePageWidget(this.email, this.password, {Key? key}) : super(key: key);
+  //const HomePageWidget(this.username, this.password, {Key? key}) : super(key: key);
   const HomePageWidget({Key? key, this.arguments}) : super(key: key);
 
   final Map<String, dynamic>? arguments;
@@ -44,10 +44,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
   _HomePageWidgetState(this.arguments, {Key? key}) : super();
 
   //final VoidCallback onActivityPressed;
-  // final String? email;
+  // final String? username;
 
   late ProfilepageModel _model;
-  late String email;
+  late String username;
   final kTransitionInfoKey = 'transition_info_key';
   final scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentIndex = 0;
@@ -115,8 +115,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfilepageModel());
-    email = arguments?['email'];
-
+    username = arguments?['username'];
+    print('username = arguments?[username] :$username');
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -332,7 +332,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               Navigator.pushNamed(context, '/transfer',
-                                  arguments: {'username': ''});
+                                  arguments: arguments);
                             },
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.24,
@@ -404,8 +404,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             //      builder: (context) => onActivityPressed(),
                             //     ));
                             //onActivityPressed();
+                            print('username in the home-page is $username');
                             Navigator.pushNamed(context, '/activity',
-                                arguments: {'username': ''});
+                                arguments: arguments);
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.24,

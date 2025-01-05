@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_map_flutter_works/word_maker.dart';
+import 'package:chain_wallet/word_maker.dart';
 import '../activity.dart';
 import '../../CustomizedIcons.dart';
 import '../../GameInputForm.dart';
@@ -8,7 +8,7 @@ import '../../SocialMediaIcons.dart';
 import '../../form.dart';
 import '../../map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
 import '../../router.dart';
 
 class InitialRouteWidget extends StatefulWidget {

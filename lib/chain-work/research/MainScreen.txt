@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
-import 'package:google_map_flutter_works/chain-work/block.dart';
-import 'package:google_map_flutter_works/chain-work/wallet.dart';
-import 'package:google_map_flutter_works/chain-work/api_service.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
+import 'package:chain_wallet/chain-work/block.dart';
+import 'package:chain_wallet/chain-work/wallet.dart';
+import 'package:chain_wallet/chain-work/api_service.dart';
 import 'signin.dart';
-import 'package:google_map_flutter_works/chain-work/activity.dart';
+import 'package:chain_wallet/chain-work/activity.dart';
 import 'market.dart';
 
 class MainScreen extends StatefulWidget {

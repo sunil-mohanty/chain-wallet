@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_map_flutter_works/chain-work/block.dart';
+import 'package:chain_wallet/chain-work/block.dart';
 
-import 'package:google_map_flutter_works/components/animations.dart';
-import 'package:google_map_flutter_works/components/theme.dart';
-import 'package:google_map_flutter_works/components/util.dart';
-import 'package:google_map_flutter_works/components/widgets.dart';
+import 'package:chain_wallet/components/animations.dart';
+import 'package:chain_wallet/components/theme.dart';
+import 'package:chain_wallet/components/util.dart';
+import 'package:chain_wallet/components/widgets.dart';
 
 class TransactionPanel extends StatefulWidget {
   final List<Block> transactions;

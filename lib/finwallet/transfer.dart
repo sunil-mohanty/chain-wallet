@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import '../chain-work/api_service.dart';
+import '../chain-work/wallet.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:google_map_flutter_works/components/CircularButton.dart';
-import 'package:google_map_flutter_works/finwallet/Transaction.dart';
-import 'package:google_map_flutter_works/signin.dart';
-import 'package:google_map_flutter_works/market.dart';
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
-import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
+import 'package:chain_wallet/components/CircularButton.dart';
+import 'package:chain_wallet/finwallet/Transaction.dart';
+import 'package:chain_wallet/signin.dart';
+import 'package:chain_wallet/market.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
+import 'package:chain_wallet/BottomNavigationBarScreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_map_flutter_works/components/theme.dart';
+import 'package:chain_wallet/components/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
 import '../chain-work/api_service.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:google_map_flutter_works/components/CircularButton.dart';
-import 'package:google_map_flutter_works/finwallet/Transaction.dart';
-import 'package:google_map_flutter_works/signin.dart';
-import 'package:google_map_flutter_works/market.dart';
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
-import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
+import 'package:chain_wallet/components/CircularButton.dart';
+import 'package:chain_wallet/finwallet/Transaction.dart';
+import 'package:chain_wallet/signin.dart';
+import 'package:chain_wallet/market.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
+import 'package:chain_wallet/BottomNavigationBarScreen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_map_flutter_works/components/theme.dart';
+import 'package:chain_wallet/components/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Transfer extends StatefulWidget {
@@ -39,7 +40,19 @@ class _TransferState extends State<Transfer> {
 
   _TransferState(this.arguments, {Key? key}) : super();
   String selectedCurrency = 'Magnet';
+  Wallet? selectedWallet = null;
+  late List<Wallet> _wallets = [];
+/*
+  void _getWallet() async {
+    _wallets = (await ApiService().listWallets(email))!;
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {
+          // Map the API response to your MyObject class
 
+          // Preselect the first element
+          selectedWallet = _wallets.isNotEmpty ? _wallets.first : null;
+        }));
+  }
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

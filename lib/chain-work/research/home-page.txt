@@ -1,7 +1,7 @@
-import 'package:google_map_flutter_works/flow/flutter_flow_animations.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_theme.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_util.dart';
-import 'package:google_map_flutter_works/flow/flutter_flow_widgets.dart';
+import 'package:chain_wallet/flow/flutter_flow_animations.dart';
+import 'package:chain_wallet/flow/flutter_flow_theme.dart';
+import 'package:chain_wallet/flow/flutter_flow_util.dart';
+import 'package:chain_wallet/flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -12,14 +12,14 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_map_flutter_works/market.dart';
-import 'package:google_map_flutter_works/chain-work/activity.dart';
-import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
+import 'package:chain_wallet/market.dart';
+import 'package:chain_wallet/chain-work/activity.dart';
+import 'package:chain_wallet/BottomNavigationBarScreen.dart';
 
 //import 'l10n/l10n.dart';
 
-import 'package:google_map_flutter_works/flow/profilepage_model.dart';
-export 'package:google_map_flutter_works/flow/profilepage_model.dart';
+import 'package:chain_wallet/flow/profilepage_model.dart';
+export 'package:chain_wallet/flow/profilepage_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   final String? email;

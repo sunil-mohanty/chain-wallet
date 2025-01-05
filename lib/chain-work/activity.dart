@@ -3,24 +3,20 @@ import 'block.dart';
 import 'wallet.dart';
 import 'api_service.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:google_map_flutter_works/components/CircularButton.dart';
-import 'package:google_map_flutter_works/finwallet/Transaction.dart';
-import 'package:google_map_flutter_works/signin.dart';
-import 'package:google_map_flutter_works/market.dart';
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
-import 'package:google_map_flutter_works/BottomNavigationBarScreen.dart';
+import 'package:chain_wallet/components/CircularButton.dart';
+import 'package:chain_wallet/finwallet/Transaction.dart';
+import 'package:chain_wallet/signin.dart';
+import 'package:chain_wallet/market.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
+import 'package:chain_wallet/BottomNavigationBarScreen.dart';
 
 class Activity extends StatefulWidget {
   final Map<String, dynamic>? arguments;
-  //final String? email;
-  //final String? password;
-  //final List<Wallet> _wallets;
-  //final List<Block> _blocks;
-  //Activity(this.email, this.password, {Key? key}) : super(key: key);
+
   Activity({Key? key, this.arguments}) : super(key: key);
   /*
   Activity.withEmailAndWalletsAndBlocks(
-      this.email, this.password, this._wallets, this._blocks,
+      this.username, this.password, this._wallets, this._blocks,
       {Key? key})
       : super(key: key);*/
 
@@ -30,24 +26,24 @@ class Activity extends StatefulWidget {
   /*
   @override
   _ActivityState createState() => _ActivityState.withEmailAndWalletsAndBlocks(
-      this.email, this._wallets, this._blocks);
+      this.username, this._wallets, this._blocks);
   */
 }
 
 class _ActivityState extends State<Activity> {
-  late String? email;
+  late String? username;
   late List<Wallet> _wallets = [];
   late List<Block> _blocks = [];
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   Block? selectedBlock = null;
   Wallet? selectedWallet = null;
   final Map<String, dynamic>? arguments;
-  //_ActivityState(this.email, {Key? key}) : super();
+  //_ActivityState(this.username, {Key? key}) : super();
   _ActivityState(this.arguments, {Key? key}) : super();
 
 /*
   _ActivityState.withEmailAndWalletsAndBlocks(
-      this.email, this._wallets, this._blocks,
+      this.username, this._wallets, this._blocks,
       {Key? key})
       : super() {
     selectedWallet = _wallets.isNotEmpty ? _wallets.first : null;
@@ -62,7 +58,10 @@ class _ActivityState extends State<Activity> {
   void initState() {
     super.initState();
     //---_getData();
-    email = arguments?['email'];
+    username = widget.arguments?['username'];
+    print('arguments initState(): ${widget.arguments}');
+    print('arguments initState(): ${arguments}');
+
     _getWallet();
     _displayDummyData();
   }
@@ -78,7 +77,9 @@ class _ActivityState extends State<Activity> {
   }
 
   void _getWallet() async {
-    _wallets = (await ApiService().listWallets(email))!;
+    print('username in the getWallet of the activity.dart $username');
+
+    _wallets = (await ApiService().listWallets(username))!;
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {
           // Map the API response to your MyObject class
 
@@ -174,6 +175,13 @@ class _ActivityState extends State<Activity> {
 
   @override
   Widget build(BuildContext context) {
+    // Extract arguments
+    final Map<String, dynamic>? arguments =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    print('final Map<String, dynamic>? arguments $arguments');
+    // Access the values
+    final String? username = arguments?['username'];
+    final String? otherValue = arguments?['otherKey'];
     return Scaffold(
       key: scaffoldKey,
       body: Container(

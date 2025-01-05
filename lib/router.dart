@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_map_flutter_works/finwallet/transfer.dart';
+import 'package:chain_wallet/finwallet/transfer.dart';
 
 import 'signin.dart';
-import 'package:google_map_flutter_works/chain-work/activity.dart';
+import 'package:chain_wallet/chain-work/activity.dart';
 
 class RouterPage extends StatelessWidget {
   final String initialRoute;
@@ -24,18 +24,24 @@ class RouterPage extends StatelessWidget {
               builder: (context) => Signin(),
               settings: RouteSettings(name: '/', arguments: initialArguments),
             );
+          /*
           case '/activity':
+            // return MaterialPageRoute(
+            //   builder: (context) => Activity(),
+            //   settings:
+            //       RouteSettings(name: '/activty', arguments: initialArguments),
+            // );
+            print('settings.arguments : $settings.arguments');
             return MaterialPageRoute(
-              builder: (context) => Activity(),
-              settings:
-                  RouteSettings(name: '/activty', arguments: initialArguments),
+              builder: (context) => Activity(
+                  arguments: settings.arguments as Map<String, dynamic>?),
             );
           case '/transfer':
             return MaterialPageRoute(
               builder: (context) => Transfer(),
               settings:
                   RouteSettings(name: '/transfer', arguments: initialArguments),
-            );
+            );*/
           default:
             // Handle unknown routes or return a default route
             return MaterialPageRoute(

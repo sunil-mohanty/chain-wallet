@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_map_flutter_works/finwallet/home-page.dart';
+import 'package:chain_wallet/finwallet/home-page.dart';
 
 import 'signin.dart';
-import 'package:google_map_flutter_works/chain-work/activity.dart';
+import 'package:chain_wallet/chain-work/activity.dart';
 
 class RouterPage extends StatelessWidget {
   final String initialRoute;

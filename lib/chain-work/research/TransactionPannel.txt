@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_map_flutter_works/chain-work/block.dart';
+import 'package:chain_wallet/chain-work/block.dart';
 
 class TransactionPanel extends StatelessWidget {
   final List<Block> transactions;
@@ -113,7 +113,7 @@ class ScrollDownButton extends StatelessWidget {
 
 
 import 'package:flutter/material.dart';
-import 'package:google_map_flutter_works/chain-work/block.dart';
+import 'package:chain_wallet/chain-work/block.dart';
 
 class TransactionPanel extends StatelessWidget {
   final List<Block> transactions;
